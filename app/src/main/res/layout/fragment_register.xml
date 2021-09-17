@@ -3,37 +3,45 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:gravity="center"
+              android:padding="16dp"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:padding="16dp"
-              tools:context=".LoginFragment">
+              tools:context=".RegisterFragment">
 
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edit_text_username"
+            android:id="@+id/edit_text_register_username"
             android:hint="Username"
-            android:text="kudo@yahoo.com"/>
+            />
 
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edit_text_password"
+            android:id="@+id/edit_text_register_password"
+            android:inputType="textPassword"
             android:hint="Password"
-            android:text="12345678"
-            android:inputType="textPassword"/>
+            />
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_text_register_repeat_password"
+            android:inputType="textPassword"
+            android:hint="Repeat password"
+            />
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Confirm"
-            android:id="@+id/button_confirm"/>
+            android:text="Register"
+            android:id="@+id/button_register"/>
 
     <ProgressBar
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBar_2"
             android:paddingTop="10dp"
             android:indeterminate="true"
             android:visibility="invisible"/>

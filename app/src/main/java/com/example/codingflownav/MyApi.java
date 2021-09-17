@@ -10,4 +10,8 @@ public interface MyApi {
     @POST("api/login")
     Call<JwtResponse> postLogin(@Body AuthRequest authRequest);
 
+
+    @POST("api/register")
+    Call<JwtResponse> postRegister(@Body RegisterRequest registerRequest);
+
 }
