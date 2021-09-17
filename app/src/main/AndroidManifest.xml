@@ -11,7 +11,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.CodingFlowNav">
-        <activity android:name=".WorkflowActivity">
+        <activity android:name=".WorkflowActivity" android:noHistory="true">
         </activity>
         <activity android:name=".MainActivity" android:noHistory="true">
             <intent-filter>
