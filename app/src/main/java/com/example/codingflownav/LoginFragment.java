@@ -1,6 +1,7 @@
 package com.example.codingflownav;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -55,8 +56,7 @@ public class LoginFragment extends Fragment {
                         editor.putString("user", email);
                         editor.apply();
                         progressBar.setVisibility(View.INVISIBLE);
-                        NavDirections action = LoginFragmentDirections.actionLoginFragmentToWelcomeFragment(email);
-                        Navigation.findNavController(view1).navigate(action);
+                        startActivity(new Intent(getActivity(), WorkflowActivity.class));
                     } else {
                         Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.INVISIBLE);

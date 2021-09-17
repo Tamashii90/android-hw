@@ -4,11 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.customview.widget.Openable;
@@ -20,7 +17,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
         }
         Openable drawerLayout = findViewById(R.id.drawer_layout);
         Set<Integer> topLevelFrags = new HashSet<>();
-        topLevelFrags.add(R.id.homeFragment);
-        topLevelFrags.add(R.id.searchFragment);
+        topLevelFrags.add(R.id.loginFragment);
+        topLevelFrags.add(R.id.registerFragment);
+
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
         appBarConfiguration = new AppBarConfiguration.Builder(topLevelFrags).setOpenableLayout(drawerLayout).build();

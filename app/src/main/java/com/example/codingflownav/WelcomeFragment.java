@@ -21,9 +21,9 @@ public class WelcomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String username = WelcomeFragmentArgs.fromBundle(getArguments()).getUsername();
-        NavController navController = Navigation.findNavController(view);
-        ((TextView) view.findViewById(R.id.text_view_username)).setText(username);
+//        String username = WelcomeFragmentArgs.fromBundle(getArguments()).getUsername();
+//        NavController navController = Navigation.findNavController(view);
+//        ((TextView) view.findViewById(R.id.text_view_username)).setText(username);
 
         view.findViewById(R.id.button_ok).setOnClickListener(view1 -> {
             startActivity(new Intent(getActivity(), WorkflowActivity.class));

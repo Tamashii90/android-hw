@@ -26,13 +26,13 @@ public class HomeFragment extends Fragment {
             String user = sharedPref.getString("user", null);
             NavController navController = Navigation.findNavController(view);
 
-            if (user == null) {
-                NavDirections action = HomeFragmentDirections.actionHomeFragmentToLoginFragment();
-                Navigation.findNavController(view1).navigate(action);
-                return;
-            }
-            NavDirections action = HomeFragmentDirections.actionHomeFragmentToWelcomeFragment(user);
-            Navigation.findNavController(view1).navigate(action);
+//            if (user == null) {
+//                NavDirections action = HomeFragmentDirections.actionHomeFragmentToLoginFragment();
+//                Navigation.findNavController(view1).navigate(action);
+//                return;
+//            }
+//            NavDirections action = HomeFragmentDirections.actionHomeFragmentToWelcomeFragment(user);
+//            Navigation.findNavController(view1).navigate(action);
         });
 
         view.findViewById(R.id.button_reset).setOnClickListener(v -> {
