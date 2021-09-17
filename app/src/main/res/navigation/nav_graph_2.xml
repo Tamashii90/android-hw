@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph2"
+            app:startDestination="@id/workflowFragment">
+
+    <fragment
+            android:id="@+id/workflowFragment"
+            android:name="com.example.codingflownav.WorkflowFragment"
+            android:label="You Made It!"
+            tools:layout="@layout/fragment_workflow"/>
+</navigation>
