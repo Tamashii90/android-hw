@@ -1,4 +1,4 @@
-package com.example.codingflownav;
+package com.example.wmshw;
 
 public class RegisterRequest {
     private String email;

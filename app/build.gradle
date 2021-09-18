@@ -9,7 +9,7 @@ android {
     buildToolsVersion "31.0.0"
 
     defaultConfig {
-        applicationId "com.example.codingflownav"
+        applicationId "com.example.wmshw"
         minSdkVersion 23
         targetSdkVersion 31
         versionCode 1

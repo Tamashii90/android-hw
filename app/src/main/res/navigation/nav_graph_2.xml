@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/workflowFragment"
-            android:name="com.example.codingflownav.WorkflowFragment"
+            android:name="com.example.wmshw.WorkflowFragment"
             android:label="Dashboard"
             tools:layout="@layout/fragment_workflow"/>
 </navigation>
