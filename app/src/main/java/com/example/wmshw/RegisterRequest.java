@@ -3,12 +3,12 @@ package com.example.wmshw;
 public class RegisterRequest {
     private String email;
     private String password;
-    private String passwordRepeat;
+    private String repeatPassword;
 
-    public RegisterRequest(String email, String password, String passwordRepeat) {
+    public RegisterRequest(String email, String password, String repeatPassword) {
         this.email = email;
         this.password = password;
-        this.passwordRepeat = passwordRepeat;
+        this.repeatPassword = repeatPassword;
     }
 
     public RegisterRequest() {
@@ -30,12 +30,12 @@ public class RegisterRequest {
         return password;
     }
 
-    public String getPasswordRepeat() {
-        return passwordRepeat;
+    public String getRepeatPassword() {
+        return repeatPassword;
     }
 
-    public void setPasswordRepeat(String passwordRepeat) {
-        this.passwordRepeat = passwordRepeat;
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class RegisterRequest {
         return "{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", passwordRepeat='" + passwordRepeat + '\'' +
+                ", repeatPassword='" + repeatPassword + '\'' +
                 '}';
     }
 }

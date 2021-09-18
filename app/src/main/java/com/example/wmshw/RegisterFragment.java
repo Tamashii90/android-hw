@@ -29,21 +29,21 @@ public class RegisterFragment extends Fragment {
 
         EditText emailField = view.findViewById(R.id.edit_text_register_username);
         EditText passwordField = view.findViewById(R.id.edit_text_register_password);
-        EditText passwordRepeatField = view.findViewById(R.id.edit_text_register_repeat_password);
+        EditText repeatPasswordField = view.findViewById(R.id.edit_text_register_repeat_password);
         ProgressBar progressBar = view.findViewById(R.id.progressBar_2);
 
         view.findViewById(R.id.button_register).setOnClickListener(view1 -> {
             String email = emailField.getText().toString();
             String password = passwordField.getText().toString();
-            String passwordRepeat = passwordRepeatField.getText().toString();
+            String repeatPassword = repeatPasswordField.getText().toString();
 
-            if (!password.equals(passwordRepeat)) {
+            if (!password.equals(repeatPassword)) {
                 Toast.makeText(getContext(), "Passwords don't match.", Toast.LENGTH_LONG).show();
                 return;
             }
 
 
-            RegisterRequest registerRequest = new RegisterRequest(email, password, passwordRepeat);
+            RegisterRequest registerRequest = new RegisterRequest(email, password, repeatPassword);
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(MyApi.BASE_URL)
