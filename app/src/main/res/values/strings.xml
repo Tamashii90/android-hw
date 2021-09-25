@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WMS HW</string>
+    <string name="paid">Paid</string>
+    <string name="tax">Tax</string>
+    <string name="violationType">Type</string>
+    <string name="plugedNumber">Pluged Number:</string>
 </resources>

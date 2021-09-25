@@ -1,27 +1,27 @@
 package com.example.wmshw;
 
 public class AuthRequest {
-    private String email;
+    private String username;
     private String password;
 
-    public AuthRequest(String email, String password) {
-        this.email = email;
+    public AuthRequest(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
     public AuthRequest() {
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -31,7 +31,7 @@ public class AuthRequest {
     @Override
     public String toString() {
         return "{" +
-                "email='" + email + '\'' +
+                "email='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

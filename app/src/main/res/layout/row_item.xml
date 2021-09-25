@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:orientation="horizontal"
+                                   android:layout_margin="10dp"
+                                   app:cardCornerRadius="4dp"
+        >
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            >
+
+        <TextView
+                android:text="@string/tax"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_tax"
+                android:layout_below="@+id/textView_date"
+                android:layout_marginTop="12dp"
+                android:layout_alignParentEnd="true"
+                />
+
+        <TextView
+                android:text="@string/plugedNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_plugedNumberLabel"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                />
+
+        <TextView
+                android:text="number"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_plugedNumberValue"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/textView_plugedNumberLabel"/>
+
+        <TextView
+                android:text="Driver:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_driverLabel"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="-1dp"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/textView_plugedNumberLabel"
+                />
+
+        <TextView
+                android:text="Date"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_date"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                />
+
+        <TextView
+                android:text="Location:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_locationLabel"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/textView_driverLabel"
+                />
+
+        <TextView
+                android:text="the value"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_driverValue"
+                android:layout_toEndOf="@+id/textView_driverLabel"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/textView_plugedNumberValue"/>
+
+        <TextView
+                android:text="the value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_locationValue"
+                android:layout_toEndOf="@+id/textView_locationLabel"
+                android:textColor="@color/black"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/textView_driverValue"/>
+
+        <TextView
+                android:text="Paid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_paid"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/textView_tax"
+                android:layout_alignParentEnd="true"
+                />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

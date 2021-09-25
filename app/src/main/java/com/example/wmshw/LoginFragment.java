@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.example.wmshw.retrofit.MyApi;
+import com.example.wmshw.retrofit.MyApiInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,22 +28,17 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        EditText emailField = view.findViewById(R.id.edit_text_username);
+        EditText usernameField = view.findViewById(R.id.edit_text_username);
         EditText passwordField = view.findViewById(R.id.edit_text_password);
         ProgressBar progressBar = view.findViewById(R.id.progressBar);
 
         view.findViewById(R.id.button_confirm).setOnClickListener(view1 -> {
-            String email = emailField.getText().toString();
+            String username = usernameField.getText().toString();
             String password = passwordField.getText().toString();
 
-            AuthRequest authRequest = new AuthRequest(email, password);
+            AuthRequest authRequest = new AuthRequest(username, password);
 
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(MyApi.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            MyApi myApi = retrofit.create(MyApi.class);
-            Call<JwtResponse> call = myApi.postLogin(authRequest);
+            Call<JwtResponse> call = MyApi.instance.postLogin(authRequest);
             progressBar.setVisibility(View.VISIBLE);
             call.enqueue(new Callback<JwtResponse>() {
                 @Override
@@ -51,7 +48,7 @@ public class LoginFragment extends Fragment {
                         SharedPreferences sharedPref = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putString("token", jwtResponse.getJwt());
-                        editor.putString("user", email);
+                        editor.putString("user", username);
                         editor.apply();
                         progressBar.setVisibility(View.INVISIBLE);
                         startActivity(new Intent(getActivity(), WorkflowActivity.class));

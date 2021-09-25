@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.example.wmshw.retrofit.MyApi;
+import com.example.wmshw.retrofit.MyApiInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,16 +44,9 @@ public class RegisterFragment extends Fragment {
                 return;
             }
 
-
             RegisterRequest registerRequest = new RegisterRequest(email, password, repeatPassword);
 
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(MyApi.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            MyApi myApi = retrofit.create(MyApi.class);
-
-            Call<JwtResponse> call = myApi.postRegister(registerRequest);
+            Call<JwtResponse> call = MyApi.instance.postRegister(registerRequest);
             progressBar.setVisibility(View.VISIBLE);
             call.enqueue(new Callback<JwtResponse>() {
                 @Override

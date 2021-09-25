@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/edit_text_username"
             android:hint="Username"
-            android:text="kudo@yahoo.com"/>
+            android:text="test"/>
 
     <EditText
             android:layout_width="match_parent"
