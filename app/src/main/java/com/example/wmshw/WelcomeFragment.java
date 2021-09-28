@@ -22,7 +22,7 @@ public class WelcomeFragment extends Fragment {
 //        ((TextView) view.findViewById(R.id.text_view_username)).setText(username);
 
         view.findViewById(R.id.button_ok).setOnClickListener(view1 -> {
-            startActivity(new Intent(getActivity(), WorkflowActivity.class));
+            startActivity(new Intent(getActivity(), AdminActivity.class));
         });
     }
 }

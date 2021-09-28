@@ -11,13 +11,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.example.wmshw.retrofit.AuthRequest;
+import com.example.wmshw.retrofit.JwtResponse;
 import com.example.wmshw.retrofit.MyApi;
-import com.example.wmshw.retrofit.MyApiInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginFragment extends Fragment {
     public LoginFragment() {
@@ -51,7 +50,7 @@ public class LoginFragment extends Fragment {
                         editor.putString("user", username);
                         editor.apply();
                         progressBar.setVisibility(View.INVISIBLE);
-                        startActivity(new Intent(getActivity(), WorkflowActivity.class));
+                        startActivity(new Intent(getActivity(), AdminActivity.class));
                     } else {
                         Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.INVISIBLE);

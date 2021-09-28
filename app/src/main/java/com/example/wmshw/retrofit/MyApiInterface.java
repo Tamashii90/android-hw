@@ -1,7 +1,5 @@
 package com.example.wmshw.retrofit;
 
-import com.example.wmshw.AuthRequest;
-import com.example.wmshw.JwtResponse;
 import com.example.wmshw.RegisterRequest;
 import retrofit2.Call;
 import retrofit2.http.Body;

@@ -5,7 +5,7 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:layout_height="match_parent"
-                tools:context=".WorkflowFragment">
+                tools:context=".AdminViolationsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -13,7 +13,7 @@
             android:id="@+id/recycle_view"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            tools:listitem="@layout/row_item"
+            tools:listitem="@layout/violation_card"
             android:layout_marginTop="0dp"
             android:layout_marginStart="0dp"/>
 

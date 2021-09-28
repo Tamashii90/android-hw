@@ -22,13 +22,13 @@ import retrofit2.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkflowFragment extends Fragment {
+public class AdminViolationsFragment extends Fragment {
 
     SharedPreferences sharedPreferences;
     List<ViolationCard> violationCards = new ArrayList<>();
 
-    public WorkflowFragment() {
-        super(R.layout.fragment_workflow);
+    public AdminViolationsFragment() {
+        super(R.layout.fragment_admin_violations);
     }
 
     @Override

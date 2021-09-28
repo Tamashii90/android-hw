@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         String user = sharedPreferences.getString("user", null);
         if (user != null) {
-            startActivity(new Intent(this, WorkflowActivity.class));
+            startActivity(new Intent(this, AdminActivity.class));
             return;
         }
         Openable drawerLayout = findViewById(R.id.drawer_layout);
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.options_menu, menu);
+        getMenuInflater().inflate(R.menu.unused_menu, menu);
         return true;
     }
 

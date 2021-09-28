@@ -11,8 +11,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.WmsHw">
-        <activity android:name="com.example.wmshw.WorkflowActivity" android:noHistory="true"
-                android:configChanges="screenSize|orientation">
+        <activity android:name="com.example.wmshw.AdminActivity" android:noHistory="true"
+                  android:configChanges="screenSize|orientation">
         </activity>
         <activity android:name="com.example.wmshw.MainActivity" android:noHistory="true">
             <intent-filter>

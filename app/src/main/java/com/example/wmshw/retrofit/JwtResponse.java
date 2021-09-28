@@ -1,4 +1,4 @@
-package com.example.wmshw;
+package com.example.wmshw.retrofit;
 
 public class JwtResponse {
     private String jwt;

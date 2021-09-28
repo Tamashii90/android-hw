@@ -13,7 +13,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class WorkflowActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     NavController navController;
@@ -22,7 +22,7 @@ public class WorkflowActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workflow);
+        setContentView(R.layout.activity_admin);
 //        if (user == null) {
 //            startActivity(new Intent(this, MainActivity.class));
 //        }
@@ -38,7 +38,7 @@ public class WorkflowActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.options_menu_2, menu);
+        getMenuInflater().inflate(R.menu.logout_menu, menu);
         return true;
     }
 

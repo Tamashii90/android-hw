@@ -1,4 +1,4 @@
-package com.example.wmshw;
+package com.example.wmshw.retrofit;
 
 public class AuthRequest {
     private String username;
