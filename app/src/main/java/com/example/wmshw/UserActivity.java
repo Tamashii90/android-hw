@@ -8,32 +8,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-public class AdminActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
-    NavController navController;
-    AppBarConfiguration appBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
-//        if (user == null) {
-//            startActivity(new Intent(this, MainActivity.class));
-//        }
+        setContentView(R.layout.activity_user);
+
         sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_2);
-        navController = navHostFragment.getNavController();
-
-        setSupportActionBar(findViewById(R.id.toolbar2));
-        NavigationUI.setupActionBarWithNavController(this, navController);
-
+        setSupportActionBar(findViewById(R.id.toolbar_user));
     }
 
     @Override
@@ -46,8 +32,8 @@ public class AdminActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_log_out:
-               resetApp();
-               return true;
+                resetApp();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -61,5 +47,4 @@ public class AdminActivity extends AppCompatActivity {
         editor.apply();
         startActivity(new Intent(this, MainActivity.class));
     }
-
 }

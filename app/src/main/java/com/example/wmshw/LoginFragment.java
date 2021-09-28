@@ -47,10 +47,15 @@ public class LoginFragment extends Fragment {
                         SharedPreferences sharedPref = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putString("token", jwtResponse.getJwt());
+                        editor.putString("authority", jwtResponse.getAuthority());
                         editor.putString("user", username);
                         editor.apply();
                         progressBar.setVisibility(View.INVISIBLE);
-                        startActivity(new Intent(getActivity(), AdminActivity.class));
+                        if (jwtResponse.getAuthority().equals("ADMIN")) {
+                            startActivity(new Intent(getActivity(), AdminActivity.class));
+                        } else if (jwtResponse.getAuthority().equals("USER")) {
+                            startActivity(new Intent(getActivity(), UserActivity.class));
+                        }
                     } else {
                         Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.INVISIBLE);

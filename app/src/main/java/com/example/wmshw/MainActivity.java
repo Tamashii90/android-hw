@@ -30,9 +30,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        String user = sharedPreferences.getString("user", null);
-        if (user != null) {
+        String authority = sharedPreferences.getString("authority", null);
+        if ("ADMIN".equals(authority)) {
             startActivity(new Intent(this, AdminActivity.class));
+            return;
+        } else if ("USER".equals(authority)) {
+            startActivity(new Intent(this, UserActivity.class));
             return;
         }
         Openable drawerLayout = findViewById(R.id.drawer_layout);
