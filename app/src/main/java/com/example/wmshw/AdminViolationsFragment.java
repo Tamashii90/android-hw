@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.wmshw.model.ViolationCard;
 import com.example.wmshw.retrofit.MyApi;
-import com.example.wmshw.retrofit.ViolationLogResponse;
-import org.threeten.bp.LocalDate;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,22 +41,12 @@ public class AdminViolationsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        Call<List<ViolationLogResponse>> request = MyApi.instance.getViolationLogs(token);
-        request.enqueue(new Callback<List<ViolationLogResponse>>() {
+        Call<List<ViolationCard>> request = MyApi.instance.getViolationLogs(token);
+        request.enqueue(new Callback<List<ViolationCard>>() {
             @Override
-            public void onResponse(Call<List<ViolationLogResponse>> call, Response<List<ViolationLogResponse>> response) {
+            public void onResponse(Call<List<ViolationCard>> call, Response<List<ViolationCard>> response) {
                 if (response.isSuccessful()) {
-                    List<ViolationLogResponse> deserializedResponse = response.body();
-                    for (ViolationLogResponse thisLog : deserializedResponse) {
-                        ViolationCard newCard = new ViolationCard();
-                        newCard.setDate(LocalDate.parse(thisLog.getDate()));
-                        newCard.setDriver(thisLog.getVehicle().get("driver").getAsString());
-                        newCard.setPlugedNumber(thisLog.getVehicle().get("plugedNumber").getAsString());
-                        newCard.setTax(thisLog.getViolation().get("tax").getAsLong());
-                        newCard.setLocation(thisLog.getLocation());
-                        newCard.setPaid(thisLog.isPaid());
-                        violationCards.add(newCard);
-                    }
+                    List<ViolationCard> violationCards = response.body();
                     adapter.setItems(violationCards);
                 } else {
                     Toast.makeText(getActivity(), response.toString(), Toast.LENGTH_SHORT).show();
@@ -66,9 +54,9 @@ public class AdminViolationsFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<ViolationLogResponse>> call, Throwable t) {
+            public void onFailure(Call<List<ViolationCard>> call, Throwable t) {
                 Log.e("ERR", t.getMessage());
-                Toast.makeText(getActivity(),"Network Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_LONG).show();
             }
         });
     }

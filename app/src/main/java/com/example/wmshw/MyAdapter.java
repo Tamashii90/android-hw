@@ -51,7 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         ViolationCard card = violationCards.get(position);
         holder.textTax.setText(String.valueOf(card.getTax()));
         holder.textPlugedNumber.setText(card.getPlugedNumber());
-        holder.textDate.setText(card.getDate().toString());
+        holder.textDate.setText(card.getDate());
         holder.textDriver.setText(card.getDriver());
         holder.textLocation.setText(card.getLocation());
         if (card.isPaid()) {

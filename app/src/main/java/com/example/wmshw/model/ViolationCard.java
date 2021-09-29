@@ -1,22 +1,17 @@
 package com.example.wmshw.model;
 
-import android.widget.TextView;
-import org.threeten.bp.LocalDate;
-
-import java.util.Date;
-
 public class ViolationCard {
     private String plugedNumber;
     private String driver;
     private String location;
     private boolean paid;
-    private LocalDate date;
+    private String date;
     private long tax;
 
     public ViolationCard() {
     }
 
-    public ViolationCard(String plugedNumber, String driver, String location, boolean paid, LocalDate date, long tax) {
+    public ViolationCard(String plugedNumber, String driver, String location, boolean paid, String date, long tax) {
         this.plugedNumber = plugedNumber;
         this.driver = driver;
         this.location = location;
@@ -57,11 +52,11 @@ public class ViolationCard {
         this.paid = paid;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

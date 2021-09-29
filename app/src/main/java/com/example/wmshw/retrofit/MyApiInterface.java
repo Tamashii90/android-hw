@@ -1,6 +1,7 @@
 package com.example.wmshw.retrofit;
 
 import com.example.wmshw.RegisterRequest;
+import com.example.wmshw.model.ViolationCard;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -17,5 +18,5 @@ public interface MyApiInterface {
     Call<JwtResponse> postRegister(@Body RegisterRequest registerRequest);
 
     @GET("api/violations-log")
-    Call<List<ViolationLogResponse>> getViolationLogs(@Header("Authorization") String token);
+    Call<List<ViolationCard>> getViolationLogs(@Header("Authorization") String token);
 }
