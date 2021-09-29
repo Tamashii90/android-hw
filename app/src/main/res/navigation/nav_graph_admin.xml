@@ -3,11 +3,40 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/nav_graph2"
-            app:startDestination="@id/workflowFragment">
+            app:startDestination="@id/adminSearchFragment">
 
     <fragment
-            android:id="@+id/workflowFragment"
+            android:id="@+id/violationsFragment"
             android:name="com.example.wmshw.AdminViolationsFragment"
-            android:label="Dashboard"
-            tools:layout="@layout/fragment_admin_violations"/>
+            android:label="Search Result"
+            tools:layout="@layout/fragment_admin_violations">
+        <argument
+                android:name="plugedNumber"
+                app:argType="string"/>
+        <argument
+                android:name="driver"
+                app:argType="string"/>
+        <argument
+                android:name="location"
+                app:argType="string"/>
+        <argument
+                android:name="fromDate"
+                app:argType="string"/>
+        <argument
+                android:name="toDate"
+                app:argType="string"/>
+    </fragment>
+    <fragment
+            android:id="@+id/adminSearchFragment"
+            android:name="com.example.wmshw.AdminSearchFragment"
+            android:label="Admin Dashboard"
+            tools:layout="@layout/fragment_admin_search">
+        <action
+                android:id="@+id/action_adminSearchFragment_to_violationsFragment"
+                app:destination="@id/violationsFragment"
+                app:exitAnim="@anim/top_to_bottom"
+                app:enterAnim="@anim/bottom_to_top"
+                app:popEnterAnim="@anim/bottom_to_top"
+                app:popExitAnim="@anim/top_to_bottom"/>
+    </fragment>
 </navigation>

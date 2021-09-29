@@ -11,87 +11,49 @@
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="662dp"
             android:id="@+id/recycle_view"
             tools:listitem="@layout/violation_card"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="340dp"/>
-
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/edit_text_search_date_from"
-            android:hint="From Date"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_text_search_location"
-            android:height="1dp"/>
-
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/edit_text_search_date_to"
-            android:hint="To Date"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_text_search_date_from"
-            android:height="1dp"/>
-
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/edit_text_search_location"
-            android:hint="Location"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_text_search_pluged_number"
-            android:height="1dp"/>
-
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/edit_text_search_driver"
-            android:hint="Driver"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="10dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:height="1dp"/>
+            android:layout_marginTop="100dp"/>
 
-    <EditText
+    <TextView
+            android:text="Found 0 violations."
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/edit_text_search_pluged_number"
-            android:hint="Pluged Number"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_view_results_count"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_text_search_driver"
-            android:height="1dp"/>
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"/>
 
-    <Button
-            android:text="Search"
-            android:layout_width="210dp"
-            android:layout_height="57dp"
-            android:id="@+id/button_search"
-            app:layout_constraintTop_toBottomOf="@+id/edit_text_search_date_to"
-            android:layout_marginTop="8dp"
+    <TextView
+            android:text="Total tax:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_results_count"
+            android:layout_marginTop="24dp"
+            android:id="@+id/text_view_total_tax"
+            android:textSize="18sp"/>
+
+    <FrameLayout
+            android:id="@+id/progressBarHolder"
+            android:animateLayoutChanges="true"
+            android:background="#FFF"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+        <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:layout_gravity="center"/>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
