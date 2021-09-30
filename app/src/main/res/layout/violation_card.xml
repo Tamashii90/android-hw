@@ -15,7 +15,7 @@
             android:layout_marginRight="25dp"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
-            >
+            android:id="@+id/card_container">
 
         <TextView
                 android:text="@string/tax"

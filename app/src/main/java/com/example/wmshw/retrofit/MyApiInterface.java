@@ -22,4 +22,8 @@ public interface MyApiInterface {
                                                @Query("fromDate") String fromDate,
                                                @Query("toDate") String toDate
     );
+
+    @GET("api/violations-log/{id}")
+    Call<ViolationCard> getViolationLog(@Header("Authorization") String token,
+                                        @Path("id") long id);
 }

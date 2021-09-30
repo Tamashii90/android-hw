@@ -25,6 +25,9 @@
         <argument
                 android:name="toDate"
                 app:argType="string"/>
+        <action
+                android:id="@+id/action_violationsFragment_to_violationDetailsFragment"
+                app:destination="@id/violationDetailsFragment"/>
     </fragment>
     <fragment
             android:id="@+id/adminSearchFragment"
@@ -38,5 +41,14 @@
                 app:enterAnim="@anim/bottom_to_top"
                 app:popEnterAnim="@anim/bottom_to_top"
                 app:popExitAnim="@anim/top_to_bottom"/>
+    </fragment>
+    <fragment
+            android:id="@+id/violationDetailsFragment"
+            android:name="com.example.wmshw.ViolationDetailsFragment"
+            android:label="Violation Details"
+            tools:layout="@layout/fragment_violation_details">
+        <argument
+                android:name="id"
+                app:argType="long"/>
     </fragment>
 </navigation>

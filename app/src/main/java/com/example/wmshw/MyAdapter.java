@@ -4,8 +4,11 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.wmshw.model.ViolationCard;
 
@@ -22,6 +25,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         TextView textDate;
         TextView textTax;
         TextView textDriver;
+        RelativeLayout cardContainer;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -31,6 +35,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             textDate = itemView.findViewById(R.id.textView_date);
             textTax = itemView.findViewById(R.id.textView_tax);
             textDriver = itemView.findViewById(R.id.textView_driverValue);
+            cardContainer = itemView.findViewById(R.id.card_container);
         }
     }
 
@@ -61,6 +66,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             holder.textPaid.setText("Not Paid");
             holder.textPaid.setTextColor(Color.parseColor("#fb2e0e"));
         }
+        holder.cardContainer.setOnClickListener(v -> {
+            NavDirections action = AdminViolationsFragmentDirections.actionViolationsFragmentToViolationDetailsFragment(
+                    card.getId());
+            Navigation.findNavController(v).navigate(action);
+        });
     }
 
     @Override
