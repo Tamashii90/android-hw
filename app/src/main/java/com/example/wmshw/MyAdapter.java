@@ -1,16 +1,24 @@
 package com.example.wmshw;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.wmshw.model.ViolationCard;
+import com.example.wmshw.retrofit.MyApi;
+import com.google.gson.JsonObject;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.util.List;
 
@@ -19,6 +27,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     List<ViolationCard> violationCards;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        // TODO display less fields
         TextView textPlugedNumber;
         TextView textLocation;
         TextView textPaid;
@@ -67,9 +76,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             holder.textPaid.setTextColor(Color.parseColor("#fb2e0e"));
         }
         holder.cardContainer.setOnClickListener(v -> {
-            NavDirections action = AdminViolationsFragmentDirections.actionViolationsFragmentToViolationDetailsFragment(
-                    card.getId());
-            Navigation.findNavController(v).navigate(action);
+            SharedPreferences sharedPreferences = v.getContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+            String token = "Bearer " + sharedPreferences.getString("token", null);
+            long id = card.getId();
+            Call<JsonObject> violationCardCall = MyApi.instance.getViolationLog(token, id);
+            violationCardCall.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if (response.isSuccessful()) {
+                        NavDirections action = AdminViolationsFragmentDirections.actionViolationsFragmentToViolationDetailsFragment(
+                                response.body().toString());
+                        Navigation.findNavController(v).navigate(action);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    Toast.makeText(v.getContext(), "Network Error", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         });
     }
 

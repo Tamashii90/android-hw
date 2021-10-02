@@ -2,6 +2,7 @@ package com.example.wmshw.retrofit;
 
 import com.example.wmshw.RegisterRequest;
 import com.example.wmshw.model.ViolationCard;
+import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -24,6 +25,6 @@ public interface MyApiInterface {
     );
 
     @GET("api/violations-log/{id}")
-    Call<ViolationCard> getViolationLog(@Header("Authorization") String token,
-                                        @Path("id") long id);
+    Call<JsonObject> getViolationLog(@Header("Authorization") String token,
+                                     @Path("id") long id);
 }

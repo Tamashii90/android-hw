@@ -48,7 +48,7 @@
             android:label="Violation Details"
             tools:layout="@layout/fragment_violation_details">
         <argument
-                android:name="id"
-                app:argType="long"/>
+                android:name="violationJson"
+                app:argType="string"/>
     </fragment>
 </navigation>
