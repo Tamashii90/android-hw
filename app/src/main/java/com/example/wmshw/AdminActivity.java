@@ -38,7 +38,7 @@ public class AdminActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(topLevelFrags).build();
 
         setSupportActionBar(findViewById(R.id.toolbar2));
-        NavigationUI.setupActionBarWithNavController(this, navController);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         BottomNavigationView bottomView = findViewById(R.id.admin_bottom_nav);
         NavigationUI.setupWithNavController(bottomView, navController);

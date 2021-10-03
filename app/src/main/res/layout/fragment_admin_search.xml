@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".AdminSearchFragment"
-            android:padding="24dp">
+            >
 
         <EditText
                 android:layout_width="wrap_content"
@@ -106,6 +106,17 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:src="@drawable/ic_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:id="@+id/floatingActionButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"/>
 
         <ProgressBar
                 style="?android:attr/progressBarStyle"
