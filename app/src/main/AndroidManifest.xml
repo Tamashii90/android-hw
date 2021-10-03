@@ -13,12 +13,10 @@
             android:theme="@style/Theme.WmsHw">
         <activity
                 android:name=".UserActivity"
-                android:configChanges="orientation|screenSize"
                 android:noHistory="true">
         </activity>
         <activity
                 android:name=".AdminActivity"
-                android:configChanges="screenSize|orientation"
                 android:noHistory="true">
         </activity>
         <activity
