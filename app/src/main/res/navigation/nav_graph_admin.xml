@@ -10,24 +10,12 @@
             android:name="com.example.wmshw.AdminViolationsFragment"
             android:label="Search Result"
             tools:layout="@layout/fragment_admin_violations">
-        <argument
-                android:name="plugedNumber"
-                app:argType="string"/>
-        <argument
-                android:name="driver"
-                app:argType="string"/>
-        <argument
-                android:name="location"
-                app:argType="string"/>
-        <argument
-                android:name="fromDate"
-                app:argType="string"/>
-        <argument
-                android:name="toDate"
-                app:argType="string"/>
         <action
                 android:id="@+id/action_violationsFragment_to_violationDetailsFragment"
                 app:destination="@id/violationDetailsFragment"/>
+        <argument
+                android:name="violationsJson"
+                app:argType="string"/>
     </fragment>
     <fragment
             android:id="@+id/adminSearchFragment"

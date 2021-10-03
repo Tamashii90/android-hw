@@ -44,20 +44,4 @@
             android:id="@+id/text_view_total_tax"
             android:textSize="18sp"/>
 
-    <FrameLayout
-            android:id="@+id/progressBarHolder"
-            android:animateLayoutChanges="true"
-            android:background="#FFF"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone">
-
-        <ProgressBar
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminate="true"
-                android:layout_gravity="center"/>
-    </FrameLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
