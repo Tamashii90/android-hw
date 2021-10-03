@@ -12,6 +12,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,16 +30,18 @@ public class AdminActivity extends AppCompatActivity {
 
         Set<Integer> topLevelFrags = new HashSet<>();
         topLevelFrags.add(R.id.adminSearchFragment);
+        topLevelFrags.add(R.id.vehiclesFragment);
         sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_2);
         navController = navHostFragment.getNavController();
         appBarConfiguration = new AppBarConfiguration.Builder(topLevelFrags).build();
 
-
         setSupportActionBar(findViewById(R.id.toolbar2));
         NavigationUI.setupActionBarWithNavController(this, navController);
 
+        BottomNavigationView bottomView = findViewById(R.id.admin_bottom_nav);
+        NavigationUI.setupWithNavController(bottomView, navController);
     }
 
     @Override

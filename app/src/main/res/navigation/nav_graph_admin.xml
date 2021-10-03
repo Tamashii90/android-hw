@@ -51,4 +51,9 @@
                 android:name="id"
                 app:argType="long"/>
     </fragment>
+    <fragment
+            android:id="@+id/vehiclesFragment"
+            android:name="com.example.wmshw.VehiclesFragment"
+            android:label="Vehicles"
+            tools:layout="@layout/fragment_vehicles"/>
 </navigation>

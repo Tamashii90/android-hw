@@ -7,23 +7,34 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        tools:context=".AdminActivity">
+        tools:context=".AdminActivity"
+        >
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
+            android:layout_alignParentTop="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:background="@color/purple_500"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:layout_constraintTop_toTopOf="parent"/>
+            />
 
     <androidx.fragment.app.FragmentContainerView
-            android:layout_width="match_parent"
-            android:layout_below="@+id/toolbar2"
+            android:layout_width="419dp"
+            android:layout_below="@id/toolbar2"
+            android:layout_above="@id/admin_bottom_nav"
             android:id="@+id/nav_host_fragment_2"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_height="match_parent"
+            android:layout_height="629dp"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph_admin"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:id="@+id/admin_bottom_nav"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content"
+            app:menu="@menu/admin_bottom_nav_menu"
+            />
 </RelativeLayout>

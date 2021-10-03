@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+    <item
+            android:title="Violations"
+            android:id="@+id/adminSearchFragment"/>
+
+    <item
+            android:title="Vehicles"
+            android:id="@+id/vehiclesFragment"/>
+</menu>
