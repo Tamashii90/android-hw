@@ -51,7 +51,7 @@
     <fragment
             android:id="@+id/vehicleDetailsFragment"
             android:name="com.example.wmshw.VehicleDetailsFragment"
-            android:label="fragment_vehicle_details"
+            android:label="Vehicle"
             tools:layout="@layout/fragment_vehicle_details">
         <argument
                 android:name="vehicleJson"

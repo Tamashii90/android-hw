@@ -7,6 +7,8 @@ import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.http.*;
 
+import java.util.Map;
+
 public interface MyApiInterface {
     @POST("api/login")
     Call<JwtResponse> postLogin(@Body AuthRequest authRequest);
@@ -30,5 +32,11 @@ public interface MyApiInterface {
     @GET("api/vehicles/{plugedNumber}")
     Call<JsonObject> getVehicle(@Header("Authorization") String token,
                                 @Path("plugedNumber") String plugedNumber
+    );
+
+    @POST("api/vehicles/{plugedNumber}")
+    Call<Void> editCrossOut(@Header("Authorization") String token,
+                            @Path("plugedNumber") String plugedNumber,
+                            @Body Map<String, Boolean> map
     );
 }
