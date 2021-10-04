@@ -41,7 +41,20 @@
     </fragment>
     <fragment
             android:id="@+id/vehiclesFragment"
-            android:name="com.example.wmshw.VehiclesFragment"
+            android:name="com.example.wmshw.VehiclesSearchFragment"
             android:label="Vehicles"
-            tools:layout="@layout/fragment_vehicles"/>
+            tools:layout="@layout/fragment_vehicles">
+        <action
+                android:id="@+id/action_vehiclesFragment_to_vehicleDetailsFragment"
+                app:destination="@id/vehicleDetailsFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/vehicleDetailsFragment"
+            android:name="com.example.wmshw.VehicleDetailsFragment"
+            android:label="fragment_vehicle_details"
+            tools:layout="@layout/fragment_vehicle_details">
+        <argument
+                android:name="vehicleJson"
+                app:argType="string"/>
+    </fragment>
 </navigation>

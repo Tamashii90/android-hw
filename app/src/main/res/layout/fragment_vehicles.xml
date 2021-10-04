@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".VehiclesFragment">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".VehiclesSearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="VEHICLES !"/>
+    <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="205dp"
+            android:layout_height="41dp"
+            android:id="@+id/progessBar_vehicles_search"
+            android:visibility="invisible"
+            android:elevation="4dp"
+            android:background="@color/purple_500"
+            tools:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button_vehicles_search"
+            android:layout_marginTop="8dp"/>
 
-</FrameLayout>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText_vehicles_pluged_number"
+            app:layout_constraintBottom_toTopOf="@+id/button_vehicles_search"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="Pluged Number"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+            android:text="Search"
+            android:layout_width="210dp"
+            android:layout_height="57dp"
+            android:id="@+id/button_vehicles_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_vehicles_pluged_number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="15dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
