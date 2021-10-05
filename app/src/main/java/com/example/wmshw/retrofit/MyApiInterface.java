@@ -1,7 +1,6 @@
 package com.example.wmshw.retrofit;
 
-import com.example.wmshw.RegisterRequest;
-import com.example.wmshw.model.ViolationCard;
+import com.example.wmshw.model.*;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import retrofit2.Call;
@@ -29,6 +28,11 @@ public interface MyApiInterface {
     Call<ViolationCard> getViolationLog(@Header("Authorization") String token,
                                         @Path("id") long id);
 
+    @POST("api/violations-log")
+    Call<Void> addViolationLog(@Header("Authorization") String token,
+                               @Body AddViolationRequest addViolationRequest
+    );
+
     @GET("api/vehicles/{plugedNumber}")
     Call<JsonObject> getVehicle(@Header("Authorization") String token,
                                 @Path("plugedNumber") String plugedNumber
@@ -39,4 +43,7 @@ public interface MyApiInterface {
                             @Path("plugedNumber") String plugedNumber,
                             @Body Map<String, Boolean> map
     );
+
+    @GET("api/violations")
+    Call<String[]> getViolationTypes();
 }

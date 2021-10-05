@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import com.example.wmshw.model.Vehicle;
 import com.example.wmshw.retrofit.MyApi;
@@ -30,6 +31,7 @@ public class VehicleDetailsFragment extends Fragment {
     TextView categoryField;
     TextView registrationDateField;
     TextView productionDateField;
+    Button navigateToAddViolBtn;
     Button crossOutBtn;
     Button uncrossOutBtn;
     ProgressBar progressBar;
@@ -51,6 +53,7 @@ public class VehicleDetailsFragment extends Fragment {
         productionDateField = view.findViewById(R.id.textView_prod_date);
         crossOutBtn = view.findViewById(R.id.button_cross_out);
         uncrossOutBtn = view.findViewById(R.id.button_uncross_out);
+        navigateToAddViolBtn = view.findViewById(R.id.button_navigate_to_add_violation);
         progressBar = view.findViewById(R.id.progressBar_vehicle);
 
         Gson gson = new Gson();
@@ -62,6 +65,8 @@ public class VehicleDetailsFragment extends Fragment {
         typeField.setText(vehicle.getType());
         productionDateField.setText(vehicle.getProductionDate());
         registrationDateField.setText(vehicle.getRegistrationDate());
+
+        navigateToAddViolBtn.setOnClickListener(this::navigateToAddViolation);
 
         if (vehicle.isCrossOut()) {
             crossOutBtn.setVisibility(View.GONE);
@@ -100,6 +105,13 @@ public class VehicleDetailsFragment extends Fragment {
                 Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    public void navigateToAddViolation(View view) {
+        String plugedNumber = plugedNumberField.getText().toString();
+        String driver = driverField.getText().toString();
+        NavDirections action = VehicleDetailsFragmentDirections
+                .actionVehicleDetailsFragmentToAddViolationFragment(plugedNumber);
+        Navigation.findNavController(view).navigate(action);
     }
 }

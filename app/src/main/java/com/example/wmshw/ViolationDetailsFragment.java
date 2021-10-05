@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -26,6 +27,8 @@ public class ViolationDetailsFragment extends Fragment {
     EditText taxField;
     EditText typeField;
     EditText paidField;
+    Button updateBtn;
+    FrameLayout progressOverlay;
 
     public ViolationDetailsFragment() {
         super(R.layout.fragment_violation_details);
@@ -44,12 +47,18 @@ public class ViolationDetailsFragment extends Fragment {
         taxField = view.findViewById(R.id.edit_text_tax);
         typeField = view.findViewById(R.id.edit_text_type);
         paidField = view.findViewById(R.id.edit_text_paid);
-        FrameLayout progressOverlay = view.findViewById(R.id.progressBarHolderDetails);
+        updateBtn = view.findViewById(R.id.button_update_violation);
+        progressOverlay = view.findViewById(R.id.progressBarHolderDetails);
 
+        updateBtn.setOnClickListener(this::updateViolation);
+        fetchViolationDetails();
+    }
+
+    private void fetchViolationDetails() {
         long id = ViolationDetailsFragmentArgs.fromBundle(getArguments()).getId();
         String token = "Bearer " + sharedPreferences.getString("token", null);
-
         Call<ViolationCard> violationCardCall = MyApi.instance.getViolationLog(token, id);
+
         progressOverlay.setVisibility(View.VISIBLE);
         violationCardCall.enqueue(new Callback<ViolationCard>() {
             @Override
@@ -73,5 +82,11 @@ public class ViolationDetailsFragment extends Fragment {
                 progressOverlay.setVisibility(View.GONE);
             }
         });
+
+    }
+
+    // TODO implement this
+    public void updateViolation(View view) {
+        Toast.makeText(getActivity(), "Update!", Toast.LENGTH_SHORT).show();
     }
 }
