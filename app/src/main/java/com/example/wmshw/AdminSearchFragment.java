@@ -1,10 +1,12 @@
 package com.example.wmshw;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -19,6 +21,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class AdminSearchFragment extends Fragment {
     SharedPreferences sharedPreferences;
     EditText locationField;
@@ -26,7 +32,10 @@ public class AdminSearchFragment extends Fragment {
     EditText plugedNumberField;
     EditText fromDateField;
     EditText toDateField;
+    EditText currentDateField;
     ProgressBar progressBar;
+    DatePickerDialog.OnDateSetListener datePickListener;
+    Calendar myCalendar = Calendar.getInstance();
 
     public AdminSearchFragment() {
         super(R.layout.fragment_admin_search);
@@ -44,6 +53,32 @@ public class AdminSearchFragment extends Fragment {
         toDateField = view.findViewById(R.id.edit_text_search_date_to);
         progressBar = view.findViewById(R.id.progessBar_search);
         view.findViewById(R.id.button_search).setOnClickListener(this::search);
+        fromDateField.setOnClickListener(this::showDateDialog);
+        toDateField.setOnClickListener(this::showDateDialog);
+
+        datePickListener = (DatePicker datePicker, int year, int month, int day) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, day);
+
+            String myFormat = "yyyy-MM-dd";
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+            currentDateField.setText(sdf.format(myCalendar.getTime()));
+        };
+    }
+
+    private void showDateDialog(View view) {
+        currentDateField = (EditText) view;
+        int year = myCalendar.get(Calendar.YEAR);
+        int month = myCalendar.get(Calendar.MONTH);
+        int day = myCalendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(
+                getActivity(),
+                R.style.datepicker,
+                datePickListener,
+                year, month, day);
+        dialog.show();
     }
 
     public void search(View view) {
