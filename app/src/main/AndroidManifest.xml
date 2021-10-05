@@ -17,6 +17,7 @@
         </activity>
         <activity
                 android:name=".AdminActivity"
+                android:windowSoftInputMode="stateHidden"
                 android:noHistory="true">
         </activity>
         <activity
