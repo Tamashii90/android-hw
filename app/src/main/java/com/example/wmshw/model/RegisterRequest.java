@@ -1,4 +1,4 @@
-package com.example.wmshw;
+package com.example.wmshw.model;
 
 public class RegisterRequest {
     private String email;

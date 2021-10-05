@@ -1,4 +1,4 @@
-package com.example.wmshw.retrofit;
+package com.example.wmshw.model;
 
 import com.google.gson.JsonObject;
 
