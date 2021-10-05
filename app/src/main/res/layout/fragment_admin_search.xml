@@ -114,7 +114,7 @@
                 android:id="@+id/progessBar_search"
                 android:visibility="invisible"
                 android:elevation="4dp"
-                android:background="@color/purple_500"
+                android:background="@color/primary"
                 app:layout_constraintEnd_toEndOf="@+id/button_search"
                 app:layout_constraintStart_toStartOf="@+id/button_search"
                 app:layout_constraintTop_toTopOf="@+id/button_search"

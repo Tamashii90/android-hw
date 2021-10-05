@@ -14,7 +14,7 @@
             android:id="@+id/progessBar_vehicles_search"
             android:visibility="invisible"
             android:elevation="4dp"
-            android:background="@color/purple_500"
+            android:background="@color/primary"
             tools:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
