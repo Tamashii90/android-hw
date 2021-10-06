@@ -46,4 +46,13 @@ public interface MyApiInterface {
 
     @GET("api/violations")
     Call<String[]> getViolationTypes();
+
+    @GET("api/violations-log/user/{plugedNumber}")
+    Call<JsonArray> getUsersViolationLogs(
+            @Header("Authorization") String token,
+            @Path("plugedNumber") String plugedNumber,
+            @Query("location") String location,
+            @Query("fromDate") String fromDate,
+            @Query("toDate") String toDate
+    );
 }

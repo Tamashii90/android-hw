@@ -49,6 +49,9 @@ public class LoginFragment extends Fragment {
                         editor.putString("token", jwtResponse.getJwt());
                         editor.putString("authority", jwtResponse.getAuthority());
                         editor.putString("user", username);
+                        if (jwtResponse.getAuthority().equals("USER")) {
+                            editor.putString("plugedNumber", password);
+                        }
                         editor.apply();
                         progressBar.setVisibility(View.INVISIBLE);
                         if (jwtResponse.getAuthority().equals("ADMIN")) {
@@ -64,7 +67,7 @@ public class LoginFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<JwtResponse> call, Throwable t) {
-                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Network Error", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             });

@@ -13,6 +13,7 @@
             android:theme="@style/Theme.WmsHw">
         <activity
                 android:name=".UserActivity"
+                android:windowSoftInputMode="stateHidden"
                 android:noHistory="true">
         </activity>
         <activity
