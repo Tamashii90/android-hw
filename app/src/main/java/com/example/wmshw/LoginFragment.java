@@ -60,7 +60,7 @@ public class LoginFragment extends Fragment {
                             startActivity(new Intent(getActivity(), UserActivity.class));
                         }
                     } else {
-                        Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), MyApi.getErrorMessage(response), Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.INVISIBLE);
                     }
                 }

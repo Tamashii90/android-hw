@@ -67,7 +67,7 @@ public class RegisterFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<JwtResponse> call, Throwable t) {
-                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Network Error", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             });
