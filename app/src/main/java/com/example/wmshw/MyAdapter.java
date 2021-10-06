@@ -68,7 +68,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             holder.textPaid.setTextColor(Color.parseColor("#fb2e0e"));
         }
         holder.cardContainer.setOnClickListener(v -> {
-            NavDirections action = AdminViolationsFragmentDirections.actionViolationsFragmentToViolationDetailsFragment(
+            NavDirections action = ViolationsListFragmentDirections.actionViolationsListFragmentToViolationDetailsFragment(
                     card.getId());
             Navigation.findNavController(v).navigate(action);
         });

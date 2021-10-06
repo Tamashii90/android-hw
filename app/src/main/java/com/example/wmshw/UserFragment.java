@@ -92,7 +92,7 @@ public class UserFragment extends Fragment {
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 if (response.isSuccessful()) {
                     JsonArray violationCardsJson = response.body();
-                    NavDirections action = UserFragmentDirections.actionUserFragmentToUserViolationLogs(
+                    NavDirections action = UserFragmentDirections.actionUserFragmentToUserViolationsFragment(
                             violationCardsJson.toString());
                     Navigation.findNavController(view).navigate(action);
 

@@ -6,16 +6,16 @@
             app:startDestination="@id/adminSearchFragment">
 
     <fragment
-            android:id="@+id/violationsFragment"
-            android:name="com.example.wmshw.AdminViolationsFragment"
+            android:id="@+id/violationsListFragment"
+            android:name="com.example.wmshw.ViolationsListFragment"
             android:label="Search Result"
-            tools:layout="@layout/fragment_admin_violations">
-        <action
-                android:id="@+id/action_violationsFragment_to_violationDetailsFragment"
-                app:destination="@id/violationDetailsFragment"/>
+            tools:layout="@layout/fragment_violations_list">
         <argument
                 android:name="violationsJson"
                 app:argType="string"/>
+        <action
+                android:id="@+id/action_violationsListFragment_to_violationDetailsFragment"
+                app:destination="@id/violationDetailsFragment"/>
     </fragment>
     <fragment
             android:id="@+id/adminSearchFragment"
@@ -24,7 +24,7 @@
             tools:layout="@layout/fragment_admin_search">
         <action
                 android:id="@+id/action_adminSearchFragment_to_violationsFragment"
-                app:destination="@id/violationsFragment"
+                app:destination="@id/violationsListFragment"
                 app:exitAnim="@anim/top_to_bottom"
                 app:enterAnim="@anim/bottom_to_top"
                 app:popEnterAnim="@anim/bottom_to_top"
@@ -34,7 +34,7 @@
             android:id="@+id/violationDetailsFragment"
             android:name="com.example.wmshw.ViolationDetailsFragment"
             android:label="Violation Details"
-            tools:layout="@layout/fragment_violation_details">
+            tools:layout="@layout/fragment_violation_details_admin">
         <argument
                 android:name="id"
                 app:argType="long"/>

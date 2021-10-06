@@ -16,7 +16,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminViolationsFragment extends Fragment {
+public class ViolationsListFragment extends Fragment {
 
     MyAdapter adapter;
     List<ViolationCard> violationCards = new ArrayList<>();
@@ -24,8 +24,8 @@ public class AdminViolationsFragment extends Fragment {
     TextView totalTaxField;
 
 
-    public AdminViolationsFragment() {
-        super(R.layout.fragment_admin_violations);
+    public ViolationsListFragment() {
+        super(R.layout.fragment_violations_list);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class AdminViolationsFragment extends Fragment {
         Gson gson = new Gson();
         resultsCountField = view.findViewById(R.id.text_view_results_count);
         totalTaxField = view.findViewById(R.id.text_view_total_tax);
-        String violationsJson = AdminViolationsFragmentArgs.fromBundle(getArguments()).getViolationsJson();
+        String violationsJson = ViolationsListFragmentArgs.fromBundle(getArguments()).getViolationsJson();
         Type listOfCardsType = new TypeToken<ArrayList<ViolationCard>>() {
         }.getType();
         violationCards = gson.fromJson(violationsJson, listOfCardsType);
