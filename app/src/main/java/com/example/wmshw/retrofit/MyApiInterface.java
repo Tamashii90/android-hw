@@ -61,4 +61,10 @@ public interface MyApiInterface {
             @Header("Authorization") String token,
             @Path("id") Long id
     );
+
+    @PUT("api/violations-log/{id}")
+    Call<Void> updateViolationLog(@Header("Authorization") String authHeader,
+                                  @Path("id") Long id,
+                                  @Body ViolationLogEditRequest editRequest
+    );
 }

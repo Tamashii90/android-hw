@@ -1,34 +1,44 @@
 package com.example.wmshw;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import com.example.wmshw.model.ViolationCard;
+import com.example.wmshw.model.ViolationLogEditRequest;
 import com.example.wmshw.retrofit.MyApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class ViolationDetailsAdminFragment extends Fragment {
 
     SharedPreferences sharedPreferences;
+    ViolationCard card;
     EditText locationField;
-    EditText driverField;
-    EditText plugedNumberField;
+    TextView driverField;
+    TextView plugedNumberField;
     EditText dateField;
-    EditText taxField;
-    EditText typeField;
-    EditText paidField;
+    TextView taxField;
+    Spinner typeField;
+    Switch paidField;
     Button updateBtn;
+    ProgressBar updateProgressBar;
     FrameLayout progressOverlay;
+    DatePickerDialog.OnDateSetListener datePickListener;
+    Calendar myCalendar = Calendar.getInstance();
+
 
     public ViolationDetailsAdminFragment() {
         super(R.layout.fragment_violation_details_admin);
@@ -40,17 +50,41 @@ public class ViolationDetailsAdminFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 
         progressOverlay = view.findViewById(R.id.progressBarHolderDetails);
+        updateProgressBar = view.findViewById(R.id.progressBar_update);
         locationField = view.findViewById(R.id.edit_text_location);
-        driverField = view.findViewById(R.id.edit_text_driver);
-        plugedNumberField = view.findViewById(R.id.edit_text_pluged_number);
+        driverField = view.findViewById(R.id.textView_driver);
+        plugedNumberField = view.findViewById(R.id.textView_pluged_number);
         dateField = view.findViewById(R.id.edit_text_date);
-        taxField = view.findViewById(R.id.edit_text_tax);
-        typeField = view.findViewById(R.id.edit_text_type);
-        paidField = view.findViewById(R.id.edit_text_paid);
+        taxField = view.findViewById(R.id.textView_tax_admin);
+        typeField = view.findViewById(R.id.spinner_violation_type);
+        paidField = view.findViewById(R.id.switch_paid);
         updateBtn = view.findViewById(R.id.button_update_violation);
         updateBtn.setOnClickListener(this::updateViolation);
+        dateField.setOnClickListener(this::showDateDialog);
 
+        datePickListener = (DatePicker datePicker, int year, int month, int day) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, day);
+
+            String myFormat = "yyyy-MM-dd";
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+            dateField.setText(sdf.format(myCalendar.getTime()));
+        };
         fetchViolationDetails();
+    }
+
+    private void showDateDialog(View view) {
+        int year = myCalendar.get(Calendar.YEAR);
+        int month = myCalendar.get(Calendar.MONTH);
+        int day = myCalendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(
+                getActivity(),
+                R.style.datepicker,
+                datePickListener,
+                year, month, day);
+        dialog.show();
     }
 
     private void fetchViolationDetails() {
@@ -63,15 +97,15 @@ public class ViolationDetailsAdminFragment extends Fragment {
             @Override
             public void onResponse(Call<ViolationCard> call, Response<ViolationCard> response) {
                 if (response.isSuccessful()) {
-                    ViolationCard card = response.body();
-                    paidField.setText(String.valueOf(card.isPaid()));
+                    card = response.body();
+                    paidField.setChecked(card.isPaid());
                     plugedNumberField.setText(card.getPlugedNumber());
                     driverField.setText(card.getDriver());
                     locationField.setText(card.getLocation());
                     taxField.setText(String.valueOf(card.getTax()));
                     dateField.setText(card.getDate());
-                    typeField.setText(card.getType());
                     progressOverlay.setVisibility(View.GONE);
+                    populateTypeField();
                 }
             }
 
@@ -83,8 +117,55 @@ public class ViolationDetailsAdminFragment extends Fragment {
         });
     }
 
-    // TODO implement this
+    private void populateTypeField() {
+        Call<String[]> request = MyApi.instance.getViolationTypes();
+        request.enqueue(new Callback<String[]>() {
+            @Override
+            public void onResponse(Call<String[]> call, Response<String[]> response) {
+                if (response.isSuccessful()) {
+                    String[] types = response.body();
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
+                    typeField.setAdapter(adapter);
+                    typeField.setSelection(Arrays.asList(types).indexOf(card.getType()));
+                } else {
+                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String[]> call, Throwable t) {
+                Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void updateViolation(View view) {
-        Toast.makeText(getActivity(), "Update!", Toast.LENGTH_SHORT).show();
+        String authHeader = "Bearer " + sharedPreferences.getString("token", null);
+        String type = typeField.getSelectedItem().toString();
+        String location = locationField.getText().toString();
+        String date = dateField.getText().toString();
+        boolean paid = paidField.isChecked();
+        ViolationLogEditRequest editRequest = new ViolationLogEditRequest(
+                type, location, date, paid
+        );
+        Call<Void> request = MyApi.instance.updateViolationLog(authHeader, card.getId(), editRequest);
+
+        updateProgressBar.setVisibility(View.VISIBLE);
+        request.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Navigation.findNavController(view).popBackStack(R.id.adminSearchFragment, false);
+                    Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
+                }
+                updateProgressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+                updateProgressBar.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 }
