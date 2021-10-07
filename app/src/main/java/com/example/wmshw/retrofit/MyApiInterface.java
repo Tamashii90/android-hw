@@ -55,4 +55,10 @@ public interface MyApiInterface {
             @Query("fromDate") String fromDate,
             @Query("toDate") String toDate
     );
+
+    @POST("api/violations-log/pay/{id}")
+    Call<Void> payForViolation(
+            @Header("Authorization") String token,
+            @Path("id") Long id
+    );
 }

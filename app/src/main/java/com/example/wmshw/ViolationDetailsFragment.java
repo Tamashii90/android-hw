@@ -10,6 +10,7 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import com.example.wmshw.model.ViolationCard;
 import com.example.wmshw.retrofit.MyApi;
 import retrofit2.Call;
@@ -30,6 +31,7 @@ public class ViolationDetailsFragment extends Fragment {
     Button updateBtn;
     Button payBtn;
     FrameLayout progressOverlay;
+    ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -67,6 +69,7 @@ public class ViolationDetailsFragment extends Fragment {
             dateField = view.findViewById(R.id.textView_user_date);
             taxField = view.findViewById(R.id.textView_user_tax);
             typeField = view.findViewById(R.id.textView_user_type);
+            progressBar = view.findViewById(R.id.progressBar_pay);
             payBtn = view.findViewById(R.id.button_pay);
             payBtn.setOnClickListener(this::payForViolation);
         }
@@ -74,7 +77,7 @@ public class ViolationDetailsFragment extends Fragment {
     }
 
     private void fetchViolationDetails() {
-        long id = ViolationDetailsFragmentArgs.fromBundle(getArguments()).getId();
+        Long id = ViolationDetailsFragmentArgs.fromBundle(getArguments()).getId();
         String token = "Bearer " + sharedPreferences.getString("token", null);
         Call<ViolationCard> violationCardCall = MyApi.instance.getViolationLog(token, id);
 
@@ -118,8 +121,29 @@ public class ViolationDetailsFragment extends Fragment {
         Toast.makeText(getActivity(), "Update!", Toast.LENGTH_SHORT).show();
     }
 
-    // TODO implement this
     public void payForViolation(View view) {
-        Toast.makeText(getActivity(), "Pay!", Toast.LENGTH_SHORT).show();
+        String token = "Bearer " + sharedPreferences.getString("token", null);
+        Long id = ViolationDetailsFragmentArgs.fromBundle(getArguments()).getId();
+        Call<Void> request = MyApi.instance.payForViolation(token, id);
+
+        progressBar.setVisibility(View.VISIBLE);
+        request.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(view).popBackStack(R.id.userFragment, false);
+                } else {
+                    Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
+                }
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 }

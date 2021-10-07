@@ -138,6 +138,19 @@
             app:layout_constraintTop_toBottomOf="@+id/textView_user_tax"
             app:layout_constraintVertical_bias="0.082"/>
 
+    <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar_pay"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/button_pay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:visibility="visible"
+            android:layout_marginTop="10dp"/>
+
     <FrameLayout
             android:id="@+id/progressBarHolderDetails"
             android:animateLayoutChanges="true"
@@ -145,7 +158,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            tools:visibility="visible"
+            tools:visibility="gone"
             android:elevation="2dp">
 
         <ProgressBar
@@ -154,6 +167,7 @@
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
                 android:layout_gravity="center"/>
+
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
