@@ -27,14 +27,26 @@
                 android:name="violationsJson"
                 app:argType="string"/>
         <action
-                android:id="@+id/action_violationsListFragment_to_violationDetailsFragment"
-                app:destination="@id/violationDetailsFragment"/>
+                android:id="@+id/action_violationsListFragment_to_violationDetailsUserFragment"
+                app:destination="@id/violationDetailsUserFragment"/>
+        <action
+                android:id="@+id/action_violationsListFragment_to_violationDetailsAdminFragment"
+                app:destination="@id/violationDetailsAdminFragment"/>
     </fragment>
     <fragment
-            android:id="@+id/violationDetailsFragment"
-            android:name="com.example.wmshw.ViolationDetailsFragment"
+            android:id="@+id/violationDetailsAdminFragment"
+            android:name="com.example.wmshw.ViolationDetailsAdminFragment"
             android:label="Violation Details"
             tools:layout="@layout/fragment_violation_details_admin">
+        <argument
+                android:name="id"
+                app:argType="long"/>
+    </fragment>
+    <fragment
+            android:id="@+id/violationDetailsUserFragment"
+            android:name="com.example.wmshw.ViolationDetailsUserFragment"
+            tools:layout="@layout/fragment_violation_details_user"
+            android:label="Violation Details">
         <argument
                 android:name="id"
                 app:argType="long"/>

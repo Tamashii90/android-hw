@@ -1,5 +1,7 @@
 package com.example.wmshw;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,8 +70,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             holder.textPaid.setTextColor(Color.parseColor("#fb2e0e"));
         }
         holder.cardContainer.setOnClickListener(v -> {
-            NavDirections action = ViolationsListFragmentDirections.actionViolationsListFragmentToViolationDetailsFragment(
-                    card.getId());
+            SharedPreferences sharedPreferences = v.getContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+            String authority = sharedPreferences.getString("authority", null);
+            NavDirections action = authority.equals("USER") ?
+                    ViolationsListFragmentDirections.actionViolationsListFragmentToViolationDetailsUserFragment(
+                            card.getId()) : ViolationsListFragmentDirections.actionViolationsListFragmentToViolationDetailsAdminFragment(card.getId());
             Navigation.findNavController(v).navigate(action);
         });
     }

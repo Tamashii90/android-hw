@@ -94,14 +94,17 @@
 
         <TextView
                 android:text="the value"
-                android:layout_width="wrap_content"
+                android:layout_width="237dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_locationValue"
                 android:layout_toEndOf="@+id/textView_locationLabel"
                 android:textColor="@color/black"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="12dp"
-                android:layout_below="@+id/textView_driverValue"/>
+                android:layout_below="@+id/textView_driverValue"
+                android:layout_toStartOf="@+id/textView_paid"
+                android:layout_marginEnd="7dp"
+                />
 
         <TextView
                 android:text="Paid"
