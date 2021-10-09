@@ -1,11 +1,11 @@
 package com.example.wmshw.retrofit;
 
 import com.example.wmshw.model.*;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.http.*;
 
+import java.util.List;
 import java.util.Map;
 
 public interface MyApiInterface {
@@ -16,12 +16,21 @@ public interface MyApiInterface {
     Call<JwtResponse> postRegister(@Body RegisterRequest registerRequest);
 
     @GET("api/violations-log")
-    Call<JsonArray> getViolationLogs(@Header("Authorization") String token,
-                                     @Query("plugedNumber") String plugedNumber,
-                                     @Query("driver") String driver,
-                                     @Query("location") String location,
-                                     @Query("fromDate") String fromDate,
-                                     @Query("toDate") String toDate
+    Call<List<ViolationCard>> getViolationLogs(@Header("Authorization") String token,
+                                               @Query("plugedNumber") String plugedNumber,
+                                               @Query("driver") String driver,
+                                               @Query("location") String location,
+                                               @Query("fromDate") String fromDate,
+                                               @Query("toDate") String toDate
+    );
+
+    @GET("api/violations-log/user/{plugedNumber}")
+    Call<List<ViolationCard>> getUsersViolationLogs(
+            @Header("Authorization") String token,
+            @Path("plugedNumber") String plugedNumber,
+            @Query("location") String location,
+            @Query("fromDate") String fromDate,
+            @Query("toDate") String toDate
     );
 
     @GET("api/violations-log/{id}")
@@ -47,14 +56,6 @@ public interface MyApiInterface {
     @GET("api/violations")
     Call<String[]> getViolationTypes();
 
-    @GET("api/violations-log/user/{plugedNumber}")
-    Call<JsonArray> getUsersViolationLogs(
-            @Header("Authorization") String token,
-            @Path("plugedNumber") String plugedNumber,
-            @Query("location") String location,
-            @Query("fromDate") String fromDate,
-            @Query("toDate") String toDate
-    );
 
     @POST("api/violations-log/pay/{id}")
     Call<Void> payForViolation(

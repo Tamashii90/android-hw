@@ -10,9 +10,6 @@
             android:name="com.example.wmshw.ViolationsListFragment"
             android:label="Search Result"
             tools:layout="@layout/fragment_violations_list">
-        <argument
-                android:name="violationsJson"
-                app:argType="string"/>
         <action
                 android:id="@+id/action_violationsListFragment_to_violationDetailsAdminFragment"
                 app:destination="@id/violationDetailsAdminFragment"/>

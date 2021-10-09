@@ -15,14 +15,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import com.example.wmshw.model.ViolationCard;
 import com.example.wmshw.retrofit.MyApi;
-import com.google.gson.JsonArray;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class AdminSearchFragment extends Fragment {
@@ -89,16 +90,23 @@ public class AdminSearchFragment extends Fragment {
         String toDate = toDateField.getText().toString();
         String token = "Bearer " + sharedPreferences.getString("token", null);
 
-        Call<JsonArray> request = MyApi.instance.getViolationLogs(
+        ViolationsListData.SearchCriteria.setPlugedNumber(plugedNumber);
+        ViolationsListData.SearchCriteria.setDriver(driver);
+        ViolationsListData.SearchCriteria.setLocation(location);
+        ViolationsListData.SearchCriteria.setFromDate(fromDate);
+        ViolationsListData.SearchCriteria.setToDate(toDate);
+
+        Call<List<ViolationCard>> request = MyApi.instance.getViolationLogs(
                 token, plugedNumber, driver, location, fromDate, toDate
         );
         progressBar.setVisibility(View.VISIBLE);
-        request.enqueue(new Callback<JsonArray>() {
+        request.enqueue(new Callback<List<ViolationCard>>() {
             @Override
-            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+            public void onResponse(Call<List<ViolationCard>> call, Response<List<ViolationCard>> response) {
                 if (response.isSuccessful()) {
-                    JsonArray violationCardsJson = response.body();
-                    NavDirections action = AdminSearchFragmentDirections.actionAdminSearchFragmentToViolationsFragment(violationCardsJson.toString());
+                    List<ViolationCard> violationCards = response.body();
+                    ViolationsListData.setList(violationCards);
+                    NavDirections action = AdminSearchFragmentDirections.actionAdminSearchFragmentToViolationsFragment();
                     Navigation.findNavController(view).navigate(action);
 
                 } else {
@@ -108,7 +116,7 @@ public class AdminSearchFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<JsonArray> call, Throwable t) {
+            public void onFailure(Call<List<ViolationCard>> call, Throwable t) {
                 Log.e("ERR", t.getMessage());
                 progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_LONG).show();

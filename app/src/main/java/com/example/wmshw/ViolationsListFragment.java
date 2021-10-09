@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.wmshw.model.ViolationCard;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,14 +29,10 @@ public class ViolationsListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Gson gson = new Gson();
         resultsCountField = view.findViewById(R.id.text_view_results_count);
         totalTaxField = view.findViewById(R.id.text_view_total_tax);
-        String violationsJson = ViolationsListFragmentArgs.fromBundle(getArguments()).getViolationsJson();
-        Type listOfCardsType = new TypeToken<ArrayList<ViolationCard>>() {
-        }.getType();
-        violationCards = gson.fromJson(violationsJson, listOfCardsType);
 
+        violationCards = ViolationsListData.getList();
         String totalTax = getString(R.string.total_tax, calcTotalTax(violationCards));
         String resultsCount = getString(R.string.results_count, violationCards.size());
         resultsCountField.setText(resultsCount);

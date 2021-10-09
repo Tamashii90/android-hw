@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import retrofit2.Response;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class ViolationDetailsAdminFragment extends Fragment {
@@ -34,7 +36,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
     Spinner typeField;
     Switch paidField;
     Button updateBtn;
-    ProgressBar updateProgressBar;
+    ProgressBar progressBar;
     FrameLayout progressOverlay;
     DatePickerDialog.OnDateSetListener datePickListener;
     Calendar myCalendar = Calendar.getInstance();
@@ -50,7 +52,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 
         progressOverlay = view.findViewById(R.id.progressBarHolderDetails);
-        updateProgressBar = view.findViewById(R.id.progressBar_update);
+        progressBar = view.findViewById(R.id.progressBar_update);
         locationField = view.findViewById(R.id.edit_text_location);
         driverField = view.findViewById(R.id.textView_driver);
         plugedNumberField = view.findViewById(R.id.textView_pluged_number);
@@ -150,21 +152,59 @@ public class ViolationDetailsAdminFragment extends Fragment {
         );
         Call<Void> request = MyApi.instance.updateViolationLog(authHeader, card.getId(), editRequest);
 
-        updateProgressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
         request.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Navigation.findNavController(view).popBackStack(R.id.adminSearchFragment, false);
                     Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    refreshViolationsList(view);
+                } else {
+                    Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
-                updateProgressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
-                updateProgressBar.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
+    private void refreshViolationsList(View view) {
+
+        String plugedNumber = ViolationsListData.SearchCriteria.getPlugedNumber();
+        String driver = ViolationsListData.SearchCriteria.getDriver();
+        String location = ViolationsListData.SearchCriteria.getLocation();
+        String fromDate = ViolationsListData.SearchCriteria.getFromDate();
+        String toDate = ViolationsListData.SearchCriteria.getToDate();
+        String token = "Bearer " + sharedPreferences.getString("token", null);
+
+        Call<List<ViolationCard>> request = MyApi.instance.getViolationLogs(
+                token, plugedNumber, driver, location, fromDate, toDate
+        );
+        progressOverlay.setVisibility(View.VISIBLE);
+        request.enqueue(new Callback<List<ViolationCard>>() {
+            @Override
+            public void onResponse(Call<List<ViolationCard>> call, Response<List<ViolationCard>> response) {
+                if (response.isSuccessful()) {
+                    List<ViolationCard> violationCards = response.body();
+                    ViolationsListData.setList(violationCards);
+                    Navigation.findNavController(view).navigateUp();
+                } else {
+                    progressOverlay.setVisibility(View.GONE);
+                    Toast.makeText(getActivity(), response.toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ViolationCard>> call, Throwable t) {
+                Log.e("ERR", t.getMessage());
+                progressOverlay.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_LONG).show();
             }
         });
     }

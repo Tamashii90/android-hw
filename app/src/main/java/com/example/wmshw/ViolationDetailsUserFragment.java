@@ -3,6 +3,7 @@ package com.example.wmshw;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import androidx.annotation.NonNull;
@@ -14,6 +15,8 @@ import com.example.wmshw.retrofit.MyApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import java.util.List;
 
 public class ViolationDetailsUserFragment extends Fragment {
     SharedPreferences sharedPreferences;
@@ -90,17 +93,52 @@ public class ViolationDetailsUserFragment extends Fragment {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(view).popBackStack(R.id.userFragment, false);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    refreshViolationsList(view);
                 } else {
                     Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
-                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
+    private void refreshViolationsList(View view) {
+
+        String location = ViolationsListData.SearchCriteria.getLocation();
+        String fromDate = ViolationsListData.SearchCriteria.getFromDate();
+        String toDate = ViolationsListData.SearchCriteria.getToDate();
+        String plugedNumber = sharedPreferences.getString("plugedNumber", null);
+        String token = "Bearer " + sharedPreferences.getString("token", null);
+
+        Call<List<ViolationCard>> request = MyApi.instance.getUsersViolationLogs(
+                token, plugedNumber, location, fromDate, toDate
+        );
+        progressOverlay.setVisibility(View.VISIBLE);
+        request.enqueue(new Callback<List<ViolationCard>>() {
+            @Override
+            public void onResponse(Call<List<ViolationCard>> call, Response<List<ViolationCard>> response) {
+                if (response.isSuccessful()) {
+                    List<ViolationCard> violationCards = response.body();
+                    ViolationsListData.setList(violationCards);
+                    Navigation.findNavController(view).navigateUp();
+                } else {
+                    progressOverlay.setVisibility(View.GONE);
+                    Toast.makeText(getActivity(), response.toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ViolationCard>> call, Throwable t) {
+                Log.e("ERR", t.getMessage());
+                progressOverlay.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_LONG).show();
             }
         });
     }
