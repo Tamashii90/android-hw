@@ -124,13 +124,17 @@ public class ViolationDetailsAdminFragment extends Fragment {
         request.enqueue(new Callback<String[]>() {
             @Override
             public void onResponse(Call<String[]> call, Response<String[]> response) {
-                if (response.isSuccessful()) {
-                    String[] types = response.body();
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
-                    typeField.setAdapter(adapter);
-                    typeField.setSelection(Arrays.asList(types).indexOf(card.getType()));
-                } else {
-                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                // it will be null if the user touched the back button
+                // before the response is received
+                if (getActivity() != null) {
+                    if (response.isSuccessful()) {
+                        String[] types = response.body();
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
+                        typeField.setAdapter(adapter);
+                        typeField.setSelection(Arrays.asList(types).indexOf(card.getType()));
+                    } else {
+                        Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
