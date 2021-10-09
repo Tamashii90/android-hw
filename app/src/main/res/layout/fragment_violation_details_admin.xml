@@ -83,7 +83,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView31"/>
 
         <TextView
-                android:text="TextView"
+                tools:text="the value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_tax_admin"
@@ -154,7 +154,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView29"/>
 
         <TextView
-                android:text="TextView"
+                tools:text="the value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_pluged_number"
@@ -163,7 +163,7 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-                android:text="TextView"
+                tools:text="the value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_driver"
@@ -189,7 +189,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:visibility="gone"
-                tools:visibility="visible"
+                tools:visibility="gone"
                 android:elevation="2dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
