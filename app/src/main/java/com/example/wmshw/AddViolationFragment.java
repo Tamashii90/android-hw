@@ -72,6 +72,12 @@ public class AddViolationFragment extends Fragment {
         String token = "Bearer " + sharedPreferences.getString("token", null);
         String location = locationField.getText().toString();
         String violationType = violationTypeField.getSelectedItem().toString();
+
+        if (MyUtils.hasEmptyString(location, violationType)) {
+            Toast.makeText(getActivity(), "All fields are required.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         AddViolationRequest addViolationRequest = new AddViolationRequest(
                 plugedNumber, violationType, location);
 

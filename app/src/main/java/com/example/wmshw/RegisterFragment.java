@@ -80,6 +80,8 @@ public class RegisterFragment extends Fragment {
     }
 
     public void register(View view) {
+        MyUtils.hideKeyboard(view);
+
         String driver = driverField.getText().toString();
         String plugedNumber = plugedNumberField.getText().toString();
         String repeatPlugedNumber = repeatPlugedNumberField.getText().toString();
@@ -87,6 +89,13 @@ public class RegisterFragment extends Fragment {
         String type = typeField.getText().toString();
         String productionDate = productionDateField.getText().toString();
         boolean crossOut = false;
+
+        if (MyUtils.hasEmptyString(
+                driver, plugedNumber, repeatPlugedNumber, category, type, productionDate
+        )) {
+            Toast.makeText(getActivity(), "All fields are required.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if (!plugedNumber.equals(repeatPlugedNumber)) {
             Toast.makeText(getContext(), "Pluged Numbers don't match.", Toast.LENGTH_LONG).show();

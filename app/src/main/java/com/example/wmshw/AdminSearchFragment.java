@@ -83,6 +83,8 @@ public class AdminSearchFragment extends Fragment {
     }
 
     public void search(View view) {
+        MyUtils.hideKeyboard(view);
+
         String plugedNumber = plugedNumberField.getText().toString();
         String driver = driverField.getText().toString();
         String location = locationField.getText().toString();

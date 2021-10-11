@@ -79,6 +79,8 @@ public class UserFragment extends Fragment {
     }
 
     public void search(View view) {
+        MyUtils.hideKeyboard(view);
+
         String location = locationField.getText().toString();
         String fromDate = fromDateField.getText().toString();
         String toDate = toDateField.getText().toString();

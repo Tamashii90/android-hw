@@ -151,6 +151,12 @@ public class ViolationDetailsAdminFragment extends Fragment {
         String location = locationField.getText().toString();
         String date = dateField.getText().toString();
         boolean paid = paidField.isChecked();
+
+        if (MyUtils.hasEmptyString(type, location, date)) {
+            Toast.makeText(getActivity(), "All fields are required.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         ViolationLogEditRequest editRequest = new ViolationLogEditRequest(
                 type, location, date, paid
         );

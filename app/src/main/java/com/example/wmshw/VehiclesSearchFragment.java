@@ -39,6 +39,8 @@ public class VehiclesSearchFragment extends Fragment {
     }
 
     public void searchForVehicle(View view) {
+        MyUtils.hideKeyboard(view);
+
         String plugedNumber = plugedNumberField.getText().toString();
         String token = "Bearer " + sharedPreferences.getString("token", null);
 
