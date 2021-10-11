@@ -5,10 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -27,6 +24,7 @@ import java.util.Locale;
 
 public class UserFragment extends Fragment {
     SharedPreferences sharedPreferences;
+    TextView loggedInAsField;
     EditText locationField;
     EditText fromDateField;
     EditText toDateField;
@@ -44,6 +42,7 @@ public class UserFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         sharedPreferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 
+        loggedInAsField = view.findViewById(R.id.textView_logged_in_driver);
         locationField = view.findViewById(R.id.user_search_location);
         fromDateField = view.findViewById(R.id.user_search_date_from);
         toDateField = view.findViewById(R.id.user_search_date_to);
@@ -51,6 +50,8 @@ public class UserFragment extends Fragment {
         view.findViewById(R.id.user_button_search).setOnClickListener(this::search);
         fromDateField.setOnClickListener(this::showDateDialog);
         toDateField.setOnClickListener(this::showDateDialog);
+
+        loggedInAsField.setText(sharedPreferences.getString("user", ""));
 
         datePickListener = (DatePicker datePicker, int year, int month, int day) -> {
             myCalendar.set(Calendar.YEAR, year);

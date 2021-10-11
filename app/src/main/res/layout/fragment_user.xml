@@ -96,6 +96,26 @@
                 app:layout_constraintVertical_bias="1.0"
                 tools:visibility="visible"/>
 
+        <TextView
+                android:text="Driver:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/textView_logged_in_driver"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#000000"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_logged_in_driver"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="12dp"
+                tools:text="value"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
