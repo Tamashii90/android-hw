@@ -1,49 +1,93 @@
 package com.example.wmshw.model;
 
 public class RegisterRequest {
-    private String email;
-    private String password;
-    private String repeatPassword;
+    private String driver;
+    private String plugedNumber;
+    private String repeatPlugedNumber;
+    private String category;
+    private String type;
+    private String productionDate;
+    private boolean crossOut;
 
-    public RegisterRequest(String email, String password, String repeatPassword) {
-        this.email = email;
-        this.password = password;
-        this.repeatPassword = repeatPassword;
+    public RegisterRequest(String driver, String plugedNumber, String repeatPlugedNumber, String category, String type, String productionDate) {
+        this.driver = driver;
+        this.plugedNumber = plugedNumber;
+        this.repeatPlugedNumber = repeatPlugedNumber;
+        this.category = category;
+        this.type = type;
+        this.productionDate = productionDate;
+        this.crossOut = false;
     }
 
     public RegisterRequest() {
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getDriver() {
+        return driver;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDriver(String driver) {
+        this.driver = driver;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPlugedNumber() {
+        return plugedNumber;
     }
 
-    public String getPassword() {
-        return password;
+    public void setPlugedNumber(String plugedNumber) {
+        this.plugedNumber = plugedNumber;
     }
 
-    public String getRepeatPassword() {
-        return repeatPassword;
+    public String getRepeatPlugedNumber() {
+        return repeatPlugedNumber;
     }
 
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
+    public void setRepeatPlugedNumber(String repeatPlugedNumber) {
+        this.repeatPlugedNumber = repeatPlugedNumber;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getProductionDate() {
+        return productionDate;
+    }
+
+    public void setProductionDate(String productionDate) {
+        this.productionDate = productionDate;
+    }
+
+    public boolean isCrossOut() {
+        return crossOut;
+    }
+
+    public void setCrossOut(boolean crossOut) {
+        this.crossOut = crossOut;
     }
 
     @Override
     public String toString() {
         return "{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", repeatPassword='" + repeatPassword + '\'' +
+                "driver='" + driver + '\'' +
+                ", plugedNumber='" + plugedNumber + '\'' +
+                ", repeeatPlugedNumber='" + repeatPlugedNumber + '\'' +
+                ", category='" + category + '\'' +
+                ", type='" + type + '\'' +
+                ", productionDate='" + productionDate + '\'' +
+                ", crossOut=" + crossOut +
                 '}';
     }
 }

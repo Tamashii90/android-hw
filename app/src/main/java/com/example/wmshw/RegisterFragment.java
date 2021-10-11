@@ -1,10 +1,12 @@
 package com.example.wmshw;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -18,8 +20,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 
 public class RegisterFragment extends Fragment {
+    EditText driverField;
+    EditText plugedNumberField;
+    EditText repeatPlugedNumberField;
+    EditText categoryField;
+    EditText typeField;
+    EditText productionDateField;
+    ProgressBar progressBar;
+    DatePickerDialog.OnDateSetListener datePickListener;
+    Calendar myCalendar = Calendar.getInstance();
+
     public RegisterFragment() {
         super(R.layout.fragment_register);
     }
@@ -28,49 +44,86 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        EditText emailField = view.findViewById(R.id.edit_text_register_username);
-        EditText passwordField = view.findViewById(R.id.edit_text_register_password);
-        EditText repeatPasswordField = view.findViewById(R.id.edit_text_register_repeat_password);
-        ProgressBar progressBar = view.findViewById(R.id.progressBar_2);
+        driverField = view.findViewById(R.id.edit_text_register_driver);
+        plugedNumberField = view.findViewById(R.id.edit_text_register_plugedNumber);
+        repeatPlugedNumberField = view.findViewById(R.id.edit_text_register_repeat_plugedNumber);
+        categoryField = view.findViewById(R.id.edit_text_register_category);
+        typeField = view.findViewById(R.id.edit_text_register_type);
+        productionDateField = view.findViewById(R.id.edit_text_register_prodDate);
+        progressBar = view.findViewById(R.id.progressBar_register);
 
-        view.findViewById(R.id.button_register).setOnClickListener(view1 -> {
-            String email = emailField.getText().toString();
-            String password = passwordField.getText().toString();
-            String repeatPassword = repeatPasswordField.getText().toString();
+        datePickListener = (DatePicker datePicker, int year, int month, int day) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, day);
 
-            if (!password.equals(repeatPassword)) {
-                Toast.makeText(getContext(), "Passwords don't match.", Toast.LENGTH_LONG).show();
-                return;
-            }
+            String myFormat = "yyyy-MM-dd";
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+            productionDateField.setText(sdf.format(myCalendar.getTime()));
+        };
 
-            RegisterRequest registerRequest = new RegisterRequest(email, password, repeatPassword);
+        view.findViewById(R.id.button_register).setOnClickListener(this::register);
+        productionDateField.setOnClickListener(this::showDateDialog);
+    }
 
-            Call<JwtResponse> call = MyApi.instance.postRegister(registerRequest);
-            progressBar.setVisibility(View.VISIBLE);
-            call.enqueue(new Callback<JwtResponse>() {
-                @Override
-                public void onResponse(Call<JwtResponse> call, Response<JwtResponse> response) {
-                    if (response.isSuccessful()) {
-                        JwtResponse jwtResponse = response.body();
-                        SharedPreferences sharedPref = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putString("token", jwtResponse.getJwt());
-                        editor.putString("user", email);
-                        editor.apply();
-                        progressBar.setVisibility(View.INVISIBLE);
-                        startActivity(new Intent(getActivity(), AdminActivity.class));
-                    } else {
-                        Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
-                }
+    private void showDateDialog(View view) {
+        int year = myCalendar.get(Calendar.YEAR);
+        int month = myCalendar.get(Calendar.MONTH);
+        int day = myCalendar.get(Calendar.DAY_OF_MONTH);
 
-                @Override
-                public void onFailure(Call<JwtResponse> call, Throwable t) {
-                    Toast.makeText(getContext(), "Network Error", Toast.LENGTH_LONG).show();
+        DatePickerDialog dialog = new DatePickerDialog(
+                getActivity(),
+                R.style.datepicker,
+                datePickListener,
+                year, month, day);
+        dialog.show();
+    }
+
+    public void register(View view) {
+        String driver = driverField.getText().toString();
+        String plugedNumber = plugedNumberField.getText().toString();
+        String repeatPlugedNumber = repeatPlugedNumberField.getText().toString();
+        String category = categoryField.getText().toString();
+        String type = typeField.getText().toString();
+        String productionDate = productionDateField.getText().toString();
+        boolean crossOut = false;
+
+        if (!plugedNumber.equals(repeatPlugedNumber)) {
+            Toast.makeText(getContext(), "Pluged Numbers don't match.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        RegisterRequest registerRequest = new RegisterRequest(
+                driver, plugedNumber, repeatPlugedNumber, category, type, productionDate
+        );
+
+        Call<JwtResponse> call = MyApi.instance.postRegister(registerRequest);
+        progressBar.setVisibility(View.VISIBLE);
+        call.enqueue(new Callback<JwtResponse>() {
+            @Override
+            public void onResponse(Call<JwtResponse> call, Response<JwtResponse> response) {
+                if (response.isSuccessful()) {
+                    JwtResponse jwtResponse = response.body();
+                    SharedPreferences sharedPref = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("token", jwtResponse.getJwt());
+                    editor.putString("user", driver);
+                    editor.putString("plugedNumber", plugedNumber);
+                    editor.putString("authority", "USER");
+                    editor.apply();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    startActivity(new Intent(getActivity(), UserActivity.class));
+                } else {
+                    Toast.makeText(getContext(), MyApi.getErrorMessage(response), Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<JwtResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Network Error", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.INVISIBLE);
+            }
         });
     }
 }
