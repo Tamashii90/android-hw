@@ -68,4 +68,7 @@ public interface MyApiInterface {
                                   @Path("id") Long id,
                                   @Body ViolationLogEditRequest editRequest
     );
+
+    @GET("/api/vehicles/types")
+    Call<String[]> getVehicleTypes();
 }

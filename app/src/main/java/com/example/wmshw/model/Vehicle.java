@@ -4,7 +4,6 @@ public class Vehicle {
     private String plugedNumber;
     private String driver;
     private String type;
-    private String category;
     private String productionDate;
     private String registrationDate;
     private boolean crossOut;
@@ -31,14 +30,6 @@ public class Vehicle {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getProductionDate() {

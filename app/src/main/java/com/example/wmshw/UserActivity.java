@@ -66,8 +66,9 @@ public class UserActivity extends AppCompatActivity {
 
     public void resetApp() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user", null);
         editor.putString("token", null);
+        editor.putString("user", null);
+        editor.putString("plugedNumber", null);
         editor.putString("authority", null);
         editor.apply();
         startActivity(new Intent(this, MainActivity.class));

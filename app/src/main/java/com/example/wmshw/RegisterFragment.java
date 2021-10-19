@@ -6,10 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -29,8 +26,7 @@ public class RegisterFragment extends Fragment {
     EditText driverField;
     EditText plugedNumberField;
     EditText repeatPlugedNumberField;
-    EditText categoryField;
-    EditText typeField;
+    Spinner vehicleTypeField;
     EditText productionDateField;
     ProgressBar progressBar;
     DatePickerDialog.OnDateSetListener datePickListener;
@@ -47,8 +43,7 @@ public class RegisterFragment extends Fragment {
         driverField = view.findViewById(R.id.edit_text_register_driver);
         plugedNumberField = view.findViewById(R.id.edit_text_register_plugedNumber);
         repeatPlugedNumberField = view.findViewById(R.id.edit_text_register_repeat_plugedNumber);
-        categoryField = view.findViewById(R.id.edit_text_register_category);
-        typeField = view.findViewById(R.id.edit_text_register_type);
+        vehicleTypeField = view.findViewById(R.id.spinner_register_type);
         productionDateField = view.findViewById(R.id.edit_text_register_prodDate);
         progressBar = view.findViewById(R.id.progressBar_register);
 
@@ -61,6 +56,8 @@ public class RegisterFragment extends Fragment {
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
             productionDateField.setText(sdf.format(myCalendar.getTime()));
         };
+
+        populateTypesList();
 
         view.findViewById(R.id.button_register).setOnClickListener(this::register);
         productionDateField.setOnClickListener(this::showDateDialog);
@@ -79,19 +76,39 @@ public class RegisterFragment extends Fragment {
         dialog.show();
     }
 
+    private void populateTypesList() {
+        Call<String[]> request = MyApi.instance.getVehicleTypes();
+        request.enqueue(new Callback<String[]>() {
+            @Override
+            public void onResponse(Call<String[]> call, Response<String[]> response) {
+                if (response.isSuccessful()) {
+                    String[] types = response.body();
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
+                    vehicleTypeField.setAdapter(adapter);
+                } else {
+                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String[]> call, Throwable t) {
+                Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void register(View view) {
         MyUtils.hideKeyboard(view);
 
         String driver = driverField.getText().toString();
         String plugedNumber = plugedNumberField.getText().toString();
         String repeatPlugedNumber = repeatPlugedNumberField.getText().toString();
-        String category = categoryField.getText().toString();
-        String type = typeField.getText().toString();
+        String type = vehicleTypeField.getSelectedItem().toString();
         String productionDate = productionDateField.getText().toString();
         boolean crossOut = false;
 
         if (MyUtils.hasEmptyString(
-                driver, plugedNumber, repeatPlugedNumber, category, type, productionDate
+                driver, plugedNumber, repeatPlugedNumber, type, productionDate
         )) {
             Toast.makeText(getActivity(), "All fields are required.", Toast.LENGTH_SHORT).show();
             return;
@@ -103,7 +120,7 @@ public class RegisterFragment extends Fragment {
         }
 
         RegisterRequest registerRequest = new RegisterRequest(
-                driver, plugedNumber, repeatPlugedNumber, category, type, productionDate
+                driver, plugedNumber, repeatPlugedNumber, type, productionDate
         );
 
         Call<JwtResponse> call = MyApi.instance.postRegister(registerRequest);

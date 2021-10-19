@@ -34,7 +34,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:hint="Pluged Number"
             android:textAlignment="center"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:maxLength="6"/>
 
     <Button
             android:text="Search"

@@ -4,16 +4,14 @@ public class RegisterRequest {
     private String driver;
     private String plugedNumber;
     private String repeatPlugedNumber;
-    private String category;
     private String type;
     private String productionDate;
     private boolean crossOut;
 
-    public RegisterRequest(String driver, String plugedNumber, String repeatPlugedNumber, String category, String type, String productionDate) {
+    public RegisterRequest(String driver, String plugedNumber, String repeatPlugedNumber, String type, String productionDate) {
         this.driver = driver;
         this.plugedNumber = plugedNumber;
         this.repeatPlugedNumber = repeatPlugedNumber;
-        this.category = category;
         this.type = type;
         this.productionDate = productionDate;
         this.crossOut = false;
@@ -46,14 +44,6 @@ public class RegisterRequest {
         this.repeatPlugedNumber = repeatPlugedNumber;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public String getType() {
         return type;
     }
@@ -84,7 +74,6 @@ public class RegisterRequest {
                 "driver='" + driver + '\'' +
                 ", plugedNumber='" + plugedNumber + '\'' +
                 ", repeeatPlugedNumber='" + repeatPlugedNumber + '\'' +
-                ", category='" + category + '\'' +
                 ", type='" + type + '\'' +
                 ", productionDate='" + productionDate + '\'' +
                 ", crossOut=" + crossOut +

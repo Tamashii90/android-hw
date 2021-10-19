@@ -37,7 +37,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:maxLength="6"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -46,14 +47,15 @@
             android:id="@+id/edit_text_register_repeat_plugedNumber"
             android:inputType="text"
             android:hint="Repeat Pluged Number"
-            app:layout_constraintBottom_toTopOf="@+id/edit_text_register_category"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_register_type"
             app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintTop_toBottomOf="@+id/edit_text_register_plugedNumber"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"
             android:ems="10"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:maxLength="6"/>
 
     <Button
             android:layout_width="wrap_content"
@@ -81,33 +83,19 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-    <EditText
-            android:layout_width="wrap_content"
+    <Spinner
+            android:id="@+id/spinner_register_type"
+            android:layout_width="216dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/edit_text_register_category"
-            android:hint="Category"
             app:layout_constraintTop_toBottomOf="@+id/edit_text_register_repeat_plugedNumber"
-            app:layout_constraintBottom_toTopOf="@+id/edit_text_register_type"
-            android:inputType="text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="center"/>
-
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:ems="10"
-            android:id="@+id/edit_text_register_type"
-            android:hint="Type"
-            app:layout_constraintTop_toBottomOf="@+id/edit_text_register_category"
             app:layout_constraintBottom_toTopOf="@+id/edit_text_register_prodDate"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.415"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="center"/>
+            android:layout_marginStart="32dp"
+            tools:listitem="@android:layout/simple_spinner_item"
+            android:spinnerMode="dropdown"
+            android:background="@android:drawable/btn_dropdown"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -116,7 +104,7 @@
             android:ems="10"
             android:id="@+id/edit_text_register_prodDate"
             android:hint="Production Date"
-            app:layout_constraintTop_toBottomOf="@+id/edit_text_register_type"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_register_type"
             app:layout_constraintBottom_toTopOf="@+id/button_register"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

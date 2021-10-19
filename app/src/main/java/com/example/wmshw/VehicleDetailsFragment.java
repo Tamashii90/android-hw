@@ -28,7 +28,6 @@ public class VehicleDetailsFragment extends Fragment {
     TextView plugedNumberField;
     TextView driverField;
     TextView typeField;
-    TextView categoryField;
     TextView registrationDateField;
     TextView productionDateField;
     Button navigateToAddViolBtn;
@@ -48,7 +47,6 @@ public class VehicleDetailsFragment extends Fragment {
         plugedNumberField = view.findViewById(R.id.textView_vehicle_pluged_number);
         driverField = view.findViewById(R.id.textView_vehicle_driver);
         typeField = view.findViewById(R.id.textView_vehicle_type);
-        categoryField = view.findViewById(R.id.textView_vehicle_category);
         registrationDateField = view.findViewById(R.id.textView_register_date);
         productionDateField = view.findViewById(R.id.textView_prod_date);
         crossOutBtn = view.findViewById(R.id.button_cross_out);
@@ -61,7 +59,6 @@ public class VehicleDetailsFragment extends Fragment {
         Vehicle vehicle = gson.fromJson(vehicleJson, Vehicle.class);
         plugedNumberField.setText(vehicle.getPlugedNumber());
         driverField.setText(vehicle.getDriver());
-        categoryField.setText(vehicle.getCategory());
         typeField.setText(vehicle.getType());
         productionDateField.setText(vehicle.getProductionDate());
         registrationDateField.setText(vehicle.getRegistrationDate());
