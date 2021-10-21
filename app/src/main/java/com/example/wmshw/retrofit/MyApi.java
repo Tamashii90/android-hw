@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.IOException;
 
 public class MyApi {
-    public static final String BASE_URL = "https://tamashii-spring.herokuapp.com/";
+    public static final String BASE_URL = "https://e-traffic.herokuapp.com";
     public static final MyApiInterface instance = new Retrofit.Builder()
             .baseUrl(MyApi.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
