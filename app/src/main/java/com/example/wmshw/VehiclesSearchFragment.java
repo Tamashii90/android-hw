@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,6 +19,8 @@ import retrofit2.Response;
 public class VehiclesSearchFragment extends Fragment {
     SharedPreferences sharedPreferences;
     EditText plugedNumberField;
+    TextView registerLink;
+    Button submitSearchBtn;
     ProgressBar progressBar;
 
 
@@ -34,8 +34,17 @@ public class VehiclesSearchFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 
         plugedNumberField = view.findViewById(R.id.editText_vehicles_pluged_number);
+        submitSearchBtn = view.findViewById(R.id.button_vehicles_search);
+        registerLink = view.findViewById(R.id.textView_register_vehicle);
         progressBar = view.findViewById(R.id.progessBar_vehicles_search);
-        view.findViewById(R.id.button_vehicles_search).setOnClickListener(this::searchForVehicle);
+
+        submitSearchBtn.setOnClickListener(this::searchForVehicle);
+        registerLink.setOnClickListener(this::navigateToRegister);
+    }
+
+    void navigateToRegister(View view) {
+        NavDirections action = VehiclesSearchFragmentDirections.actionVehiclesFragmentToRegisterFragment();
+        Navigation.findNavController(view).navigate(action);
     }
 
     public void searchForVehicle(View view) {
