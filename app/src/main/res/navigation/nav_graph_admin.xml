@@ -13,6 +13,9 @@
         <action
                 android:id="@+id/action_violationsListFragment_to_violationDetailsAdminFragment"
                 app:destination="@id/violationDetailsAdminFragment"/>
+        <action
+                android:id="@+id/action_violationsListFragment_to_violationDetailsUserFragment"
+                app:destination="@id/violationDetailsUserFragment"/>
     </fragment>
     <fragment
             android:id="@+id/adminSearchFragment"

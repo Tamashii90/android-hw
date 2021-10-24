@@ -15,13 +15,12 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         String authority = sharedPreferences.getString("authority", null);
-        // TODO Remove these comments after your bring back the DB
-//        if ("ADMIN".equals(authority)) {
-        startActivity(new Intent(this, AdminActivity.class));
-        return;
-//        } else if ("USER".equals(authority)) {
-//            startActivity(new Intent(this, UserActivity.class));
-//            return;
-//        }
+        if ("ADMIN".equals(authority)) {
+            startActivity(new Intent(this, AdminActivity.class));
+            return;
+        } else if ("USER".equals(authority)) {
+            startActivity(new Intent(this, UserActivity.class));
+            return;
+        }
     }
 }
