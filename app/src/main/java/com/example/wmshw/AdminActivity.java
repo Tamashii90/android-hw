@@ -1,7 +1,6 @@
 package com.example.wmshw;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +15,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.example.wmshw.MyUtils.resetApp;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -54,7 +55,7 @@ public class AdminActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_log_out:
-                resetApp();
+                resetApp(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -66,13 +67,5 @@ public class AdminActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
     }
 
-    public void resetApp() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user", null);
-        editor.putString("token", null);
-        editor.putString("authority", null);
-        editor.apply();
-        startActivity(new Intent(this, MainActivity.class));
-    }
 
 }

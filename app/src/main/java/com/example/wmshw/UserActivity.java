@@ -1,7 +1,6 @@
 package com.example.wmshw;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +14,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.example.wmshw.MyUtils.resetApp;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -57,20 +58,10 @@ public class UserActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_log_out:
-                resetApp();
+                resetApp(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    public void resetApp() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("token", null);
-        editor.putString("user", null);
-        editor.putString("plugedNumber", null);
-        editor.putString("authority", null);
-        editor.apply();
-        startActivity(new Intent(this, MainActivity.class));
     }
 }
