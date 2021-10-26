@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:android="http://schemas.android.com/apk/res/android"
         >
     <item
             android:title="Violations"
-            android:id="@+id/adminSearchFragment"/>
+            android:id="@+id/adminSearchFragment"
+            app:showAsAction="never"
+            android:icon="@drawable/ic_error_svgrepo_com"/>
 
     <item
             android:title="Vehicles"
-            android:id="@+id/vehiclesFragment"/>
+            android:id="@+id/vehiclesFragment"
+            android:icon="@drawable/ic_car_svgrepo_com"/>
 </menu>

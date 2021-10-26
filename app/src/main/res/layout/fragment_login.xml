@@ -1,44 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:gravity="center"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:padding="16dp"
-              tools:context=".LoginFragment">
-
-    <EditText
+<ScrollView android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:maxLines="1"
-            android:inputType="text"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_text_username"
-            android:hint="Username"
-            android:text="test"/>
+            android:fillViewport="true"
+            xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditText
-            android:layout_width="match_parent"
-            android:maxLines="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_text_password"
-            android:hint="Password"
-            android:text="12345678"
-            android:inputType="textPassword"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:orientation="vertical"
+                  android:gravity="center"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="16dp"
+                  tools:context=".LoginFragment">
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Confirm"
-            android:id="@+id/button_confirm"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_text_username"
+                android:hint="Username"
+                android:text="test"/>
 
-    <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
-            android:paddingTop="10dp"
-            android:indeterminate="true"
-            android:visibility="invisible"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_text_password"
+                android:hint="Password"
+                android:text="12345678"
+                android:inputType="textPassword"/>
 
-</LinearLayout>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm"
+                android:id="@+id/button_confirm"
+                android:textStyle="bold"/>
+
+        <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:paddingTop="10dp"
+                android:indeterminate="true"
+                android:visibility="invisible"/>
+
+    </LinearLayout>
+</ScrollView>

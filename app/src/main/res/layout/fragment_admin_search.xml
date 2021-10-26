@@ -13,6 +13,22 @@
             tools:context=".AdminSearchFragment"
             >
 
+        <TextView
+                android:text="Find Violations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="26sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/edit_text_search_driver"
+                android:textColor="@color/primary"
+                android:shadowColor="@color/black"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="2"/>
+
         <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,7 +77,8 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
-                android:elevation="0dp"/>
+                android:elevation="0dp"
+                android:textStyle="bold"/>
 
         <EditText
                 android:layout_width="wrap_content"

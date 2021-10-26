@@ -31,7 +31,10 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="16dp"
             android:layout_marginStart="20dp"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            style="@style/MyLabel"
+            android:textColor="@color/text"
+            />
 
     <TextView
             android:text="Total tax:"
@@ -42,6 +45,8 @@
             app:layout_constraintTop_toBottomOf="@+id/text_view_results_count"
             android:layout_marginTop="24dp"
             android:id="@+id/text_view_total_tax"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            style="@style/MyLabel"
+            android:textColor="@color/text"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

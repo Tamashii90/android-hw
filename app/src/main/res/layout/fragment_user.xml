@@ -42,7 +42,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/user_search_date_to"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textStyle="bold"/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -97,16 +98,6 @@
                 tools:visibility="visible"/>
 
         <TextView
-                android:text="Driver:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@+id/textView_logged_in_driver"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="4dp"
-                android:layout_marginTop="20dp"
-                android:textColor="#000000"/>
-
-        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_logged_in_driver"
@@ -114,7 +105,25 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="12dp"
-                tools:text="value"/>
+                tools:text="driver's name"
+                style="@style/MyLabel"
+                android:textColor="@color/text"/>
+
+        <TextView
+                android:text="Find Unpaid Violations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="26sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/user_search_location"
+                android:textColor="@color/primary"
+                android:shadowColor="@color/black"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="2"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

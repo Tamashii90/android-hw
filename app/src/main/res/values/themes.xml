@@ -12,10 +12,19 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/merriweather_sans</item>
     </style>
 
     <style name="datepicker" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/primary</item>
+        <item name="colorAccent">@color/primary</item>b
     </style>
+
+    <style name="MyLabel" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="color">@color/text</item>
+    </style>
+
 
 </resources>

@@ -30,6 +30,7 @@ public class VehicleDetailsFragment extends Fragment {
     TextView typeField;
     TextView registrationDateField;
     TextView productionDateField;
+    TextView crossOutField;
     Button navigateToAddViolBtn;
     Button crossOutBtn;
     Button uncrossOutBtn;
@@ -49,6 +50,7 @@ public class VehicleDetailsFragment extends Fragment {
         typeField = view.findViewById(R.id.textView_vehicle_type);
         registrationDateField = view.findViewById(R.id.textView_register_date);
         productionDateField = view.findViewById(R.id.textView_prod_date);
+        crossOutField = view.findViewById(R.id.textView_register_crossOut);
         crossOutBtn = view.findViewById(R.id.button_cross_out);
         uncrossOutBtn = view.findViewById(R.id.button_uncross_out);
         navigateToAddViolBtn = view.findViewById(R.id.button_navigate_to_add_violation);
@@ -62,6 +64,7 @@ public class VehicleDetailsFragment extends Fragment {
         typeField.setText(vehicle.getType());
         productionDateField.setText(vehicle.getProductionDate());
         registrationDateField.setText(vehicle.getRegistrationDate());
+        crossOutField.setText(vehicle.isCrossOut() ? "Yes" : "No");
 
         navigateToAddViolBtn.setOnClickListener(this::navigateToAddViolation);
 

@@ -42,7 +42,7 @@
     <fragment
             android:id="@+id/vehiclesFragment"
             android:name="com.example.wmshw.VehiclesSearchFragment"
-            android:label="Vehicles"
+            android:label="Admin Dashboard"
             tools:layout="@layout/fragment_vehicles">
         <action
                 android:id="@+id/action_vehiclesFragment_to_vehicleDetailsFragment"
@@ -58,7 +58,7 @@
     <fragment
             android:id="@+id/vehicleDetailsFragment"
             android:name="com.example.wmshw.VehicleDetailsFragment"
-            android:label="Vehicle"
+            android:label="Vehicle Details"
             tools:layout="@layout/fragment_vehicle_details">
         <argument
                 android:name="vehicleJson"
@@ -85,5 +85,9 @@
             android:id="@+id/violationDetailsUserFragment"
             android:name="com.example.wmshw.ViolationDetailsUserFragment"
             tools:layout="@layout/fragment_violation_details_user"
-            android:label="Violation Details"/>
+            android:label="Violation Details">
+        <argument
+                android:name="id"
+                app:argType="long"/>
+    </fragment>
 </navigation>
