@@ -5,5 +5,5 @@
     <string name="violationType">Type</string>
     <string name="plugedNumber">Pluged Number:</string>
     <string name="results_count">Found %1$d violations.</string>
-    <string name="total_tax">Total tax: %1$d</string>
+    <string name="total_tax">Total tax: $%1$d</string>
 </resources>

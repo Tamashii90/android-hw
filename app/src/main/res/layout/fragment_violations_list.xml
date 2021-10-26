@@ -12,17 +12,17 @@
                                                    android:paddingEnd="10dp">
 
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/recycle_view"
             tools:listitem="@layout/violation_card"
             android:scrollbars="vertical"
             tools:itemCount="2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_total_tax"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
             android:text="Found 0 violations."
