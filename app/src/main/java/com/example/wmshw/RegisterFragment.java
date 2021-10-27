@@ -29,6 +29,7 @@ public class RegisterFragment extends Fragment {
     Spinner vehicleTypeField;
     EditText productionDateField;
     ProgressBar progressBar;
+    String[] types;
     DatePickerDialog.OnDateSetListener datePickListener;
     Calendar myCalendar = Calendar.getInstance();
 
@@ -57,10 +58,23 @@ public class RegisterFragment extends Fragment {
             productionDateField.setText(sdf.format(myCalendar.getTime()));
         };
 
-        populateTypesList();
-
         view.findViewById(R.id.button_register).setOnClickListener(this::register);
         productionDateField.setOnClickListener(this::showDateDialog);
+        if (savedInstanceState == null) {
+            populateTypesList();
+        } else {
+            types = savedInstanceState.getStringArray("types");
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
+            vehicleTypeField.setAdapter(adapter);
+            vehicleTypeField.setSelection(savedInstanceState.getInt("selection"));
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putStringArray("types", types);
+        outState.putInt("selection", vehicleTypeField.getSelectedItemPosition());
     }
 
     private void showDateDialog(View view) {
@@ -82,7 +96,7 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onResponse(Call<String[]> call, Response<String[]> response) {
                 if (response.isSuccessful()) {
-                    String[] types = response.body();
+                    types = response.body();
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
                     vehicleTypeField.setAdapter(adapter);
                 } else {

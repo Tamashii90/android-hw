@@ -23,6 +23,7 @@ public class AddViolationFragment extends Fragment {
     EditText locationField;
     Button submitViolationBtn;
     ProgressBar progressBar;
+    String[] types;
 
     public AddViolationFragment() {
         super(R.layout.fragment_add_violation);
@@ -41,10 +42,23 @@ public class AddViolationFragment extends Fragment {
         submitViolationBtn = view.findViewById(R.id.button_submit_add_violation);
 
         plugedNumberField.setText(plugedNumber);
-
-        populateDropDownList();
-
         submitViolationBtn.setOnClickListener(this::submitViolation);
+
+        if (savedInstanceState == null) {
+            populateDropDownList();
+        } else {
+            types = savedInstanceState.getStringArray("types");
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
+            violationTypeField.setAdapter(adapter);
+            violationTypeField.setSelection(savedInstanceState.getInt("selection"));
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putStringArray("types", types);
+        outState.putInt("selection", violationTypeField.getSelectedItemPosition());
     }
 
     private void populateDropDownList() {
@@ -53,7 +67,7 @@ public class AddViolationFragment extends Fragment {
             @Override
             public void onResponse(Call<String[]> call, Response<String[]> response) {
                 if (response.isSuccessful()) {
-                    String[] types = response.body();
+                    types = response.body();
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
                     violationTypeField.setAdapter(adapter);
                 } else {
