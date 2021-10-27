@@ -28,6 +28,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
 
     SharedPreferences sharedPreferences;
     ViolationCard card;
+    String[] types;
     EditText locationField;
     TextView driverField;
     TextView plugedNumberField;
@@ -73,7 +74,21 @@ public class ViolationDetailsAdminFragment extends Fragment {
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
             dateField.setText(sdf.format(myCalendar.getTime()));
         };
-        fetchViolationDetails();
+        if (savedInstanceState == null) {
+            fetchViolationDetails();
+        } else {
+            types = savedInstanceState.getStringArray("types");
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
+            typeField.setAdapter(adapter);
+            typeField.setSelection(savedInstanceState.getInt("selection", 0));
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putStringArray("types", types);
+        outState.putInt("selection", typeField.getSelectedItemPosition());
     }
 
     private void showDateDialog(View view) {
@@ -128,7 +143,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
                 // before the response is received
                 if (getActivity() != null) {
                     if (response.isSuccessful()) {
-                        String[] types = response.body();
+                        types = response.body();
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
                         typeField.setAdapter(adapter);
                         typeField.setSelection(Arrays.asList(types).indexOf(card.getType()));

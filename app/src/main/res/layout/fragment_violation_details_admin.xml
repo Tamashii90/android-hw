@@ -89,7 +89,8 @@
                 style="@style/MyLabel"
                 android:textColor="@color/text"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:freezesText="true"/>
 
         <Spinner
                 android:layout_width="167dp"
@@ -99,7 +100,8 @@
                 android:spinnerMode="dropdown"
                 android:background="@android:drawable/btn_dropdown"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView29"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:saveEnabled="false"/>
 
         <TextView
                 android:text="Pluged Number"
@@ -154,7 +156,8 @@
                 style="@style/MyLabel"
                 android:textColor="@color/text"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView27"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:freezesText="true"/>
 
         <TextView
                 tools:text="the value"
@@ -164,7 +167,8 @@
                 style="@style/MyLabel"
                 android:textColor="@color/text"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView28"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:freezesText="true"/>
 
         <Switch
                 android:layout_width="wrap_content"

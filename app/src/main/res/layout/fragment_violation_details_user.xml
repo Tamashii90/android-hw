@@ -34,7 +34,8 @@
                 android:layout_marginStart="35dp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView"
                 style="@style/MyLabel"
-                android:textColor="@color/text"/>
+                android:textColor="@color/text"
+                android:freezesText="true"/>
 
     <TextView
             android:text="Driver"
@@ -95,7 +96,8 @@
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 android:layout_marginStart="100dp"
                 style="@style/MyLabel"
-                android:textColor="@color/text"/>
+                android:textColor="@color/text"
+                android:freezesText="true"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -109,7 +111,8 @@
                 android:textColor="@color/text"
                 android:singleLine="false"
                 android:nestedScrollingEnabled="true"
-                android:ellipsize="end"/>
+                android:ellipsize="end"
+                android:freezesText="true"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -120,7 +123,8 @@
                 app:layout_constraintStart_toEndOf="@+id/textView7"
                 android:layout_marginStart="110dp"
                 style="@style/MyLabel"
-                android:textColor="@color/text"/>
+                android:textColor="@color/text"
+                android:freezesText="true"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -131,7 +135,8 @@
                 app:layout_constraintStart_toEndOf="@+id/textView8"
                 android:layout_marginStart="110dp"
                 style="@style/MyLabel"
-                android:textColor="@color/text"/>
+                android:textColor="@color/text"
+                android:freezesText="true"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -142,7 +147,8 @@
                 android:layout_marginStart="116dp"
                 app:layout_constraintStart_toEndOf="@+id/textView17"
                 style="@style/MyLabel"
-                android:textColor="@color/text"/>
+                android:textColor="@color/text"
+                android:freezesText="true"/>
 
         <Button
                 android:text="Pay for This Violation"

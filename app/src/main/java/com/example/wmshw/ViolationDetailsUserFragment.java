@@ -50,7 +50,9 @@ public class ViolationDetailsUserFragment extends Fragment {
         payBtn = view.findViewById(R.id.button_pay);
         payBtn.setOnClickListener(this::payForViolation);
 
-        fetchViolationDetails();
+        if (savedInstanceState == null) {
+            fetchViolationDetails();
+        }
     }
 
     private void fetchViolationDetails() {
