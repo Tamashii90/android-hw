@@ -119,7 +119,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
                     plugedNumberField.setText(card.getPlugedNumber());
                     driverField.setText(card.getDriver());
                     locationField.setText(card.getLocation());
-                    taxField.setText(String.valueOf(card.getTax()));
+                    taxField.setText("$" + String.valueOf(card.getTax()));
                     dateField.setText(card.getDate());
                     progressOverlay.setVisibility(View.GONE);
                     populateTypeField();
