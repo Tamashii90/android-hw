@@ -13,7 +13,8 @@ public interface MyApiInterface {
     Call<JwtResponse> postLogin(@Body AuthRequest authRequest);
 
     @POST("api/register")
-    Call<JwtResponse> postRegister(@Body RegisterRequest registerRequest);
+    Call<JwtResponse> postRegister(@Header("Authorization") String authHeader,
+                                   @Body RegisterRequest registerRequest);
 
     @GET("api/violations-log")
     Call<List<ViolationCard>> getViolationLogs(@Header("Authorization") String token,

@@ -2,7 +2,6 @@ package com.example.wmshw;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import com.example.wmshw.model.JwtResponse;
 import com.example.wmshw.model.RegisterRequest;
 import com.example.wmshw.retrofit.MyApi;
@@ -137,22 +137,18 @@ public class RegisterFragment extends Fragment {
                 driver, plugedNumber, repeatPlugedNumber, type, productionDate
         );
 
-        Call<JwtResponse> call = MyApi.instance.postRegister(registerRequest);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        String authHeader = "Bearer " + sharedPreferences.getString("token", null);
+        Call<JwtResponse> call = MyApi.instance.postRegister(authHeader, registerRequest);
         progressBar.setVisibility(View.VISIBLE);
+
         call.enqueue(new Callback<JwtResponse>() {
             @Override
             public void onResponse(Call<JwtResponse> call, Response<JwtResponse> response) {
                 if (response.isSuccessful()) {
-                    JwtResponse jwtResponse = response.body();
-                    SharedPreferences sharedPref = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("token", jwtResponse.getJwt());
-                    editor.putString("user", driver);
-                    editor.putString("plugedNumber", plugedNumber);
-                    editor.putString("authority", "USER");
-                    editor.apply();
+                    Toast.makeText(getContext(), "Success!", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
-                    startActivity(new Intent(getActivity(), UserActivity.class));
+                    Navigation.findNavController(view).navigateUp();
                 } else {
                     Toast.makeText(getContext(), MyApi.getErrorMessage(response), Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.INVISIBLE);
