@@ -26,7 +26,10 @@
                 android:ems="10"
                 android:id="@+id/edit_text_location"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView20"/>
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView20"
+                android:textColor="@color/text"
+                android:textColorHint="@color/text_dark"
+                android:backgroundTint="@color/text_dark"/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -35,7 +38,10 @@
                 android:ems="10"
                 android:id="@+id/edit_text_date"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView31"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/text"
+                android:textColorHint="@color/text_dark"
+                android:backgroundTint="@color/text_dark"/>
 
         <Button
                 android:text="Update"
@@ -70,7 +76,8 @@
                 android:id="@+id/textView31"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView30"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView30"
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 android:text="Tax"
@@ -79,7 +86,8 @@
                 android:id="@+id/textView32"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView31"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView31"
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 tools:text="the value"
@@ -110,7 +118,7 @@
                 android:id="@+id/textView27"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                />
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 android:text="Type"
@@ -119,7 +127,8 @@
                 android:id="@+id/textView29"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView20"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView20"
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 android:text="Location"
@@ -128,7 +137,8 @@
                 android:id="@+id/textView20"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView28"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView28"
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 android:text="Driver"
@@ -137,7 +147,8 @@
                 android:id="@+id/textView28"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView27"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView27"
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 android:text="Paid"
@@ -146,7 +157,8 @@
                 android:id="@+id/textView30"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView29"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView29"
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 tools:text="the value"
@@ -176,12 +188,14 @@
                 android:id="@+id/switch_paid"
                 android:textColorHighlight="@color/primary"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView30"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/text"
+                android:textColorLink="@color/text"/>
 
         <FrameLayout
                 android:id="@+id/progressBarHolderDetails"
                 android:animateLayoutChanges="true"
-                android:background="#FFF"
+                android:background="@color/background"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:visibility="gone"

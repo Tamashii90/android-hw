@@ -22,7 +22,7 @@
                 android:id="@+id/textView9"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:textColor="@color/text"/>
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 android:text="Type"
@@ -32,7 +32,7 @@
                 android:id="@+id/textView11"
                 app:layout_constraintTop_toBottomOf="@+id/textView10"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/text"/>
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 android:text="Production Date"
@@ -42,7 +42,7 @@
                 android:id="@+id/textView13"
                 app:layout_constraintTop_toBottomOf="@+id/textView11"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/text"/>
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 android:text="Crossed Out"
@@ -52,7 +52,7 @@
                 android:id="@+id/textView15"
                 app:layout_constraintTop_toBottomOf="@+id/textView14"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/text"/>
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 android:text="Registration Date"
@@ -62,7 +62,7 @@
                 android:id="@+id/textView14"
                 app:layout_constraintTop_toBottomOf="@+id/textView13"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/text"/>
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 android:text="Driver"
@@ -72,7 +72,7 @@
                 android:id="@+id/textView10"
                 app:layout_constraintTop_toBottomOf="@+id/textView9"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/text"/>
+                android:textColor="@color/text_dark"/>
 
         <TextView
                 android:text="TextView"

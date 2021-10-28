@@ -7,18 +7,19 @@
                                                    app:cardCornerRadius="4dp"
                                                    android:layout_marginBottom="10dp"
                                                    app:strokeWidth="1dp"
-                                                   app:strokeColor="@color/text"
-        >
+                                                   app:strokeColor="@color/black"
+                                                   android:background="@color/secondary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/card_container"
-            android:layout_margin="10dp">
+            android:background="@color/secondary"
+            android:padding="10dp">
 
         <TextView
                 android:text="Date"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_date"
@@ -30,7 +31,7 @@
         <TextView
                 android:text="the value"
                 android:layout_width="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_driverValue"
                 app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +45,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_locationValue"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="13dp"
@@ -53,7 +54,7 @@
 
         <TextView
                 android:text="@string/tax"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_tax"

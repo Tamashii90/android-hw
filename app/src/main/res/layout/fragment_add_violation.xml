@@ -26,7 +26,7 @@
                 android:layout_marginTop="30dp"
                 android:id="@+id/textView16"
                 android:textSize="16sp"
-                android:textColor="#4A4747"
+                android:textColor="@color/text_dark"
                 />
 
         <TextView
@@ -37,7 +37,7 @@
                 android:id="@+id/textView3"
                 app:layout_constraintStart_toStartOf="parent"
                 android:textSize="16sp"
-                android:textColor="#4A4747"/>
+                android:textColor="@color/text_dark"/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -49,8 +49,10 @@
                 android:layout_marginStart="64dp"
                 app:layout_constraintStart_toEndOf="@+id/textView16"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView16"
-                tools:text="Location LOL lol"
-                />
+                tools:text="Location"
+                android:textColor="@color/text"
+                android:textColorHint="@color/text_dark"
+                android:backgroundTint="@color/text_dark"/>
 
         <TextView
                 android:text="Violation Type"
@@ -61,7 +63,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:id="@+id/textView6"
                 android:textSize="16sp"
-                android:textColor="#4A4747"/>
+                android:textColor="@color/text_dark"/>
 
         <Spinner
                 android:layout_width="167dp"
