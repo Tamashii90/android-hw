@@ -100,7 +100,7 @@ public class RegisterFragment extends Fragment {
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
                     vehicleTypeField.setAdapter(adapter);
                 } else {
-                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
                 }
             }
 

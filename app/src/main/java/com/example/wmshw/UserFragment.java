@@ -105,8 +105,7 @@ public class UserFragment extends Fragment {
                     Navigation.findNavController(view).navigate(action);
 
                 } else {
-                    // TODO response.toString() is bad in production!
-                    Toast.makeText(getActivity(), response.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
                 }
                 progressBar.setVisibility(View.INVISIBLE);
             }

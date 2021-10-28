@@ -112,7 +112,7 @@ public class AdminSearchFragment extends Fragment {
                     Navigation.findNavController(view).navigate(action);
 
                 } else {
-                    Toast.makeText(getActivity(), response.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
                 }
                 progressBar.setVisibility(View.INVISIBLE);
             }

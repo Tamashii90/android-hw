@@ -94,7 +94,7 @@ public class VehicleDetailsFragment extends Fragment {
                     Navigation.findNavController(view).navigateUp();
                     Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
                 }
                 progressBar.setVisibility(View.INVISIBLE);
             }

@@ -121,9 +121,11 @@ public class ViolationDetailsAdminFragment extends Fragment {
                     locationField.setText(card.getLocation());
                     taxField.setText("$" + String.valueOf(card.getTax()));
                     dateField.setText(card.getDate());
-                    progressOverlay.setVisibility(View.GONE);
                     populateTypeField();
+                } else {
+                    Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
                 }
+                progressOverlay.setVisibility(View.GONE);
             }
 
             @Override
@@ -148,7 +150,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
                         typeField.setAdapter(adapter);
                         typeField.setSelection(Arrays.asList(types).indexOf(card.getType()));
                     } else {
-                        Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -221,7 +223,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
                     Navigation.findNavController(view).navigateUp();
                 } else {
                     progressOverlay.setVisibility(View.GONE);
-                    Toast.makeText(getActivity(), response.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
                 }
             }
 

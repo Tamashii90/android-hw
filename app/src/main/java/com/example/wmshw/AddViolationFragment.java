@@ -71,7 +71,7 @@ public class AddViolationFragment extends Fragment {
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, types);
                     violationTypeField.setAdapter(adapter);
                 } else {
-                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -104,7 +104,7 @@ public class AddViolationFragment extends Fragment {
                     Navigation.findNavController(view).navigateUp();
                     Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), MyApi.getErrorMessage(response), Toast.LENGTH_SHORT).show();
                 }
                 progressBar.setVisibility(View.INVISIBLE);
             }
