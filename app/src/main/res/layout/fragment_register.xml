@@ -30,7 +30,8 @@
                 tools:layout_editor_absoluteX="10dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/edit_text_register_plugedNumber"
-                app:layout_constraintVertical_chainStyle="packed"/>
+                app:layout_constraintVertical_chainStyle="packed"
+                android:maxLength="13"/>
 
         <EditText
                 android:layout_width="match_parent"

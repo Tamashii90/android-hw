@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WMS HW</string>
+    <string name="app_name">E-Traffic</string>
     <string name="paid">Paid</string>
     <string name="tax">Tax</string>
     <string name="violationType">Type</string>

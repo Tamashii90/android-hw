@@ -17,10 +17,8 @@ public class MainActivity extends AppCompatActivity {
         String authority = sharedPreferences.getString("authority", null);
         if ("ADMIN".equals(authority)) {
             startActivity(new Intent(this, AdminActivity.class));
-            return;
         } else if ("USER".equals(authority)) {
             startActivity(new Intent(this, UserActivity.class));
-            return;
         }
     }
 }
