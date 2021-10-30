@@ -2,9 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.WmsHw" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <!--        <item name="android:background">#191a1e</item>-->
         <item name="android:windowBackground">@color/background</item>
-        <!--        <item name="android:colorBackground">#191a1e</item>-->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>

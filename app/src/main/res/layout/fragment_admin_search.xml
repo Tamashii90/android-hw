@@ -86,7 +86,7 @@
                 android:elevation="0dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:backgroundTint="@color/text"/>
+                android:backgroundTint="@color/white"/>
 
         <EditText
                 android:layout_width="wrap_content"
