@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class VehicleDetailsFragment extends Fragment {
     SharedPreferences sharedPreferences;
-    TextView plugedNumberField;
+    TextView plateNumberField;
     TextView driverField;
     TextView typeField;
     TextView registrationDateField;
@@ -45,7 +45,7 @@ public class VehicleDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         sharedPreferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 
-        plugedNumberField = view.findViewById(R.id.textView_vehicle_pluged_number);
+        plateNumberField = view.findViewById(R.id.textView_vehicle_plate_number);
         driverField = view.findViewById(R.id.textView_vehicle_driver);
         typeField = view.findViewById(R.id.textView_vehicle_type);
         registrationDateField = view.findViewById(R.id.textView_register_date);
@@ -59,7 +59,7 @@ public class VehicleDetailsFragment extends Fragment {
         Gson gson = new Gson();
         String vehicleJson = VehicleDetailsFragmentArgs.fromBundle(getArguments()).getVehicleJson();
         Vehicle vehicle = gson.fromJson(vehicleJson, Vehicle.class);
-        plugedNumberField.setText(vehicle.getPlugedNumber());
+        plateNumberField.setText(vehicle.getPlateNumber());
         driverField.setText(vehicle.getDriver());
         typeField.setText(vehicle.getType());
         productionDateField.setText(vehicle.getProductionDate());
@@ -79,12 +79,12 @@ public class VehicleDetailsFragment extends Fragment {
 
     public void editCrossOut(View view) {
         String token = "Bearer " + sharedPreferences.getString("token", null);
-        String plugedNumber = plugedNumberField.getText().toString();
+        String plateNumber = plateNumberField.getText().toString();
         Map<String, Boolean> requestBody = new HashMap<>();
         Boolean crossOut;
         crossOut = view.getId() == R.id.button_cross_out;
         requestBody.put("crossOut", crossOut);
-        Call<Void> request = MyApi.instance.editCrossOut(token, plugedNumber, requestBody);
+        Call<Void> request = MyApi.instance.editCrossOut(token, plateNumber, requestBody);
 
         progressBar.setVisibility(View.VISIBLE);
         request.enqueue(new Callback<Void>() {
@@ -108,10 +108,10 @@ public class VehicleDetailsFragment extends Fragment {
     }
 
     public void navigateToAddViolation(View view) {
-        String plugedNumber = plugedNumberField.getText().toString();
+        String plateNumber = plateNumberField.getText().toString();
         String driver = driverField.getText().toString();
         NavDirections action = VehicleDetailsFragmentDirections
-                .actionVehicleDetailsFragmentToAddViolationFragment(plugedNumber);
+                .actionVehicleDetailsFragmentToAddViolationFragment(plateNumber);
         Navigation.findNavController(view).navigate(action);
     }
 }

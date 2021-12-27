@@ -24,8 +24,8 @@ import java.util.Locale;
 
 public class RegisterFragment extends Fragment {
     EditText driverField;
-    EditText plugedNumberField;
-    EditText repeatPlugedNumberField;
+    EditText plateNumberField;
+    EditText repeatPlateNumberField;
     Spinner vehicleTypeField;
     EditText productionDateField;
     ProgressBar progressBar;
@@ -42,8 +42,8 @@ public class RegisterFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         driverField = view.findViewById(R.id.edit_text_register_driver);
-        plugedNumberField = view.findViewById(R.id.edit_text_register_plugedNumber);
-        repeatPlugedNumberField = view.findViewById(R.id.edit_text_register_repeat_plugedNumber);
+        plateNumberField = view.findViewById(R.id.edit_text_register_plateNumber);
+        repeatPlateNumberField = view.findViewById(R.id.edit_text_register_repeat_plateNumber);
         vehicleTypeField = view.findViewById(R.id.spinner_register_type);
         productionDateField = view.findViewById(R.id.edit_text_register_prodDate);
         progressBar = view.findViewById(R.id.progressBar_register);
@@ -115,26 +115,26 @@ public class RegisterFragment extends Fragment {
         MyUtils.hideKeyboard(view);
 
         String driver = driverField.getText().toString();
-        String plugedNumber = plugedNumberField.getText().toString();
-        String repeatPlugedNumber = repeatPlugedNumberField.getText().toString();
+        String plateNumber = plateNumberField.getText().toString();
+        String repeatPlateNumber = repeatPlateNumberField.getText().toString();
         String type = vehicleTypeField.getSelectedItem().toString();
         String productionDate = productionDateField.getText().toString();
         boolean crossOut = false;
 
         if (MyUtils.hasEmptyString(
-                driver, plugedNumber, repeatPlugedNumber, type, productionDate
+                driver, plateNumber, repeatPlateNumber, type, productionDate
         )) {
             Toast.makeText(getActivity(), "All fields are required.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!plugedNumber.equals(repeatPlugedNumber)) {
-            Toast.makeText(getContext(), "Pluged Numbers don't match.", Toast.LENGTH_LONG).show();
+        if (!plateNumber.equals(repeatPlateNumber)) {
+            Toast.makeText(getContext(), "Plate Numbers don't match.", Toast.LENGTH_LONG).show();
             return;
         }
 
         RegisterRequest registerRequest = new RegisterRequest(
-                driver, plugedNumber, repeatPlugedNumber, type, productionDate
+                driver, plateNumber, repeatPlateNumber, type, productionDate
         );
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);

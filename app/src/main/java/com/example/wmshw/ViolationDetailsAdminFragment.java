@@ -31,7 +31,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
     String[] types;
     EditText locationField;
     TextView driverField;
-    TextView plugedNumberField;
+    TextView plateNumberField;
     EditText dateField;
     TextView taxField;
     Spinner typeField;
@@ -56,7 +56,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar_update);
         locationField = view.findViewById(R.id.edit_text_location);
         driverField = view.findViewById(R.id.textView_driver);
-        plugedNumberField = view.findViewById(R.id.textView_pluged_number);
+        plateNumberField = view.findViewById(R.id.textView_plate_number);
         dateField = view.findViewById(R.id.edit_text_date);
         taxField = view.findViewById(R.id.textView_tax_admin);
         typeField = view.findViewById(R.id.spinner_violation_type);
@@ -116,7 +116,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
                 if (response.isSuccessful()) {
                     card = response.body();
                     paidField.setChecked(card.isPaid());
-                    plugedNumberField.setText(card.getPlugedNumber());
+                    plateNumberField.setText(card.getPlateNumber());
                     driverField.setText(card.getDriver());
                     locationField.setText(card.getLocation());
                     taxField.setText("$" + String.valueOf(card.getTax()));
@@ -203,7 +203,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
 
     private void refreshViolationsList(View view) {
 
-        String plugedNumber = ViolationsListData.SearchCriteria.getPlugedNumber();
+        String plateNumber = ViolationsListData.SearchCriteria.getPlateNumber();
         String driver = ViolationsListData.SearchCriteria.getDriver();
         String location = ViolationsListData.SearchCriteria.getLocation();
         String fromDate = ViolationsListData.SearchCriteria.getFromDate();
@@ -211,7 +211,7 @@ public class ViolationDetailsAdminFragment extends Fragment {
         String token = "Bearer " + sharedPreferences.getString("token", null);
 
         Call<List<ViolationCard>> request = MyApi.instance.getViolationLogs(
-                token, plugedNumber, driver, location, fromDate, toDate
+                token, plateNumber, driver, location, fromDate, toDate
         );
         progressOverlay.setVisibility(View.VISIBLE);
         request.enqueue(new Callback<List<ViolationCard>>() {

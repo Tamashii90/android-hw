@@ -73,7 +73,7 @@
             android:label="Add Violation"
             tools:layout="@layout/fragment_add_violation">
         <argument
-                android:name="plugedNumber"
+                android:name="plateNumber"
                 app:argType="string"/>
     </fragment>
     <fragment

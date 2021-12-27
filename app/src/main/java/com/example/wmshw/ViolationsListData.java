@@ -17,18 +17,18 @@ public class ViolationsListData {
     }
 
     public static class SearchCriteria {
-        private static String plugedNumber;
+        private static String plateNumber;
         private static String driver;
         private static String location;
         private static String fromDate;
         private static String toDate;
 
-        public static String getPlugedNumber() {
-            return plugedNumber;
+        public static String getPlateNumber() {
+            return plateNumber;
         }
 
-        public static void setPlugedNumber(String plugedNumber) {
-            SearchCriteria.plugedNumber = plugedNumber;
+        public static void setPlateNumber(String plateNumber) {
+            SearchCriteria.plateNumber = plateNumber;
         }
 
         public static String getDriver() {

@@ -30,7 +30,8 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintBottom_toTopOf="@+id/edit_text_password"
                 app:layout_constraintVertical_chainStyle="packed"
-                android:backgroundTint="@color/text_dark"/>
+                android:backgroundTint="@color/text_dark"
+                android:text="admin"/>
 
         <EditText
                 android:layout_width="match_parent"
@@ -44,7 +45,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/edit_text_username"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/button_confirm"
-                android:backgroundTint="@color/text_dark"/>
+                android:backgroundTint="@color/text_dark"
+                android:text="12345678"/>
 
         <Button
                 android:layout_width="wrap_content"

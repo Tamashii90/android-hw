@@ -16,7 +16,7 @@
             android:paddingEnd="28dp">
 
         <TextView
-                android:text="Pluged Number"
+                android:text="Plate Number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView9"
@@ -102,10 +102,10 @@
                 android:text="TextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView_vehicle_pluged_number"
+                android:id="@+id/textView_vehicle_plate_number"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
                 app:layout_constraintStart_toEndOf="@+id/textView9"
-                android:layout_marginStart="52dp"
+                android:layout_marginStart="63dp"
                 android:textColor="@color/text"
                 style="@style/MyLabel"
                 app:layout_constraintEnd_toEndOf="parent"/>

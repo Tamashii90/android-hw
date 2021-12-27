@@ -30,7 +30,7 @@ public class AdminSearchFragment extends Fragment {
     SharedPreferences sharedPreferences;
     EditText locationField;
     EditText driverField;
-    EditText plugedNumberField;
+    EditText plateNumberField;
     EditText fromDateField;
     EditText toDateField;
     EditText currentDateField;
@@ -49,7 +49,7 @@ public class AdminSearchFragment extends Fragment {
 
         locationField = view.findViewById(R.id.edit_text_search_location);
         driverField = view.findViewById(R.id.edit_text_search_driver);
-        plugedNumberField = view.findViewById(R.id.edit_text_search_pluged_number);
+        plateNumberField = view.findViewById(R.id.edit_text_search_plate_number);
         fromDateField = view.findViewById(R.id.edit_text_search_date_from);
         toDateField = view.findViewById(R.id.edit_text_search_date_to);
         progressBar = view.findViewById(R.id.progessBar_search);
@@ -85,21 +85,21 @@ public class AdminSearchFragment extends Fragment {
     public void search(View view) {
         MyUtils.hideKeyboard(view);
 
-        String plugedNumber = plugedNumberField.getText().toString();
+        String plateNumber = plateNumberField.getText().toString();
         String driver = driverField.getText().toString();
         String location = locationField.getText().toString();
         String fromDate = fromDateField.getText().toString();
         String toDate = toDateField.getText().toString();
         String token = "Bearer " + sharedPreferences.getString("token", null);
 
-        ViolationsListData.SearchCriteria.setPlugedNumber(plugedNumber);
+        ViolationsListData.SearchCriteria.setPlateNumber(plateNumber);
         ViolationsListData.SearchCriteria.setDriver(driver);
         ViolationsListData.SearchCriteria.setLocation(location);
         ViolationsListData.SearchCriteria.setFromDate(fromDate);
         ViolationsListData.SearchCriteria.setToDate(toDate);
 
         Call<List<ViolationCard>> request = MyApi.instance.getViolationLogs(
-                token, plugedNumber, driver, location, fromDate, toDate
+                token, plateNumber, driver, location, fromDate, toDate
         );
         progressBar.setVisibility(View.VISIBLE);
         request.enqueue(new Callback<List<ViolationCard>>() {

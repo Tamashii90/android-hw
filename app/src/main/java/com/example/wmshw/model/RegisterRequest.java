@@ -2,16 +2,16 @@ package com.example.wmshw.model;
 
 public class RegisterRequest {
     private String driver;
-    private String plugedNumber;
-    private String repeatPlugedNumber;
+    private String plateNumber;
+    private String repeatPlateNumber;
     private String type;
     private String productionDate;
     private boolean crossOut;
 
-    public RegisterRequest(String driver, String plugedNumber, String repeatPlugedNumber, String type, String productionDate) {
+    public RegisterRequest(String driver, String plateNumber, String repeatPlateNumber, String type, String productionDate) {
         this.driver = driver;
-        this.plugedNumber = plugedNumber;
-        this.repeatPlugedNumber = repeatPlugedNumber;
+        this.plateNumber = plateNumber;
+        this.repeatPlateNumber = repeatPlateNumber;
         this.type = type;
         this.productionDate = productionDate;
         this.crossOut = false;
@@ -28,20 +28,20 @@ public class RegisterRequest {
         this.driver = driver;
     }
 
-    public String getPlugedNumber() {
-        return plugedNumber;
+    public String getPlateNumber() {
+        return plateNumber;
     }
 
-    public void setPlugedNumber(String plugedNumber) {
-        this.plugedNumber = plugedNumber;
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
 
-    public String getRepeatPlugedNumber() {
-        return repeatPlugedNumber;
+    public String getRepeatPlateNumber() {
+        return repeatPlateNumber;
     }
 
-    public void setRepeatPlugedNumber(String repeatPlugedNumber) {
-        this.repeatPlugedNumber = repeatPlugedNumber;
+    public void setRepeatPlateNumber(String repeatPlateNumber) {
+        this.repeatPlateNumber = repeatPlateNumber;
     }
 
     public String getType() {
@@ -72,8 +72,8 @@ public class RegisterRequest {
     public String toString() {
         return "{" +
                 "driver='" + driver + '\'' +
-                ", plugedNumber='" + plugedNumber + '\'' +
-                ", repeeatPlugedNumber='" + repeatPlugedNumber + '\'' +
+                ", plateNumber='" + plateNumber + '\'' +
+                ", repeeatPlateNumber='" + repeatPlateNumber + '\'' +
                 ", type='" + type + '\'' +
                 ", productionDate='" + productionDate + '\'' +
                 ", crossOut=" + crossOut +

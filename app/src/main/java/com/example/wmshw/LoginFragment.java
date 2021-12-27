@@ -64,7 +64,7 @@ public class LoginFragment extends Fragment {
                     editor.putString("authority", jwtResponse.getAuthority());
                     editor.putString("user", username);
                     if (jwtResponse.getAuthority().equals("USER")) {
-                        editor.putString("plugedNumber", password);
+                        editor.putString("plateNumber", password);
                     }
                     editor.apply();
                     progressBar.setVisibility(View.INVISIBLE);

@@ -18,7 +18,7 @@ import retrofit2.Response;
 
 public class VehiclesSearchFragment extends Fragment {
     SharedPreferences sharedPreferences;
-    EditText plugedNumberField;
+    EditText plateNumberField;
     TextView registerLink;
     Button submitSearchBtn;
     ProgressBar progressBar;
@@ -33,7 +33,7 @@ public class VehiclesSearchFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         sharedPreferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 
-        plugedNumberField = view.findViewById(R.id.editText_vehicles_pluged_number);
+        plateNumberField = view.findViewById(R.id.editText_vehicles_plate_number);
         submitSearchBtn = view.findViewById(R.id.button_vehicles_search);
         registerLink = view.findViewById(R.id.textView_register_vehicle);
         progressBar = view.findViewById(R.id.progessBar_vehicles_search);
@@ -50,15 +50,15 @@ public class VehiclesSearchFragment extends Fragment {
     public void searchForVehicle(View view) {
         MyUtils.hideKeyboard(view);
 
-        String plugedNumber = plugedNumberField.getText().toString();
+        String plateNumber = plateNumberField.getText().toString();
         String token = "Bearer " + sharedPreferences.getString("token", null);
 
-        if (plugedNumber.trim().isEmpty()) {
-            Toast.makeText(getActivity(), "Pluged Number is required", Toast.LENGTH_SHORT).show();
+        if (plateNumber.trim().isEmpty()) {
+            Toast.makeText(getActivity(), "Plate Number is required", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Call<JsonObject> request = MyApi.instance.getVehicle(token, plugedNumber);
+        Call<JsonObject> request = MyApi.instance.getVehicle(token, plateNumber);
         progressBar.setVisibility(View.VISIBLE);
         request.enqueue(new Callback<JsonObject>() {
             @Override

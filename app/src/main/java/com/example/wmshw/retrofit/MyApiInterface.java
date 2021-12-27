@@ -18,17 +18,17 @@ public interface MyApiInterface {
 
     @GET("api/violations-log")
     Call<List<ViolationCard>> getViolationLogs(@Header("Authorization") String token,
-                                               @Query("plugedNumber") String plugedNumber,
+                                               @Query("plateNumber") String plateNumber,
                                                @Query("driver") String driver,
                                                @Query("location") String location,
                                                @Query("fromDate") String fromDate,
                                                @Query("toDate") String toDate
     );
 
-    @GET("api/violations-log/user/{plugedNumber}")
+    @GET("api/violations-log/user/{plateNumber}")
     Call<List<ViolationCard>> getUsersViolationLogs(
             @Header("Authorization") String token,
-            @Path("plugedNumber") String plugedNumber,
+            @Path("plateNumber") String plateNumber,
             @Query("location") String location,
             @Query("fromDate") String fromDate,
             @Query("toDate") String toDate
@@ -43,14 +43,14 @@ public interface MyApiInterface {
                                @Body AddViolationRequest addViolationRequest
     );
 
-    @GET("api/vehicles/{plugedNumber}")
+    @GET("api/vehicles/{plateNumber}")
     Call<JsonObject> getVehicle(@Header("Authorization") String token,
-                                @Path("plugedNumber") String plugedNumber
+                                @Path("plateNumber") String plateNumber
     );
 
-    @POST("api/vehicles/{plugedNumber}")
+    @POST("api/vehicles/{plateNumber}")
     Call<Void> editCrossOut(@Header("Authorization") String token,
-                            @Path("plugedNumber") String plugedNumber,
+                            @Path("plateNumber") String plateNumber,
                             @Body Map<String, Boolean> map
     );
 

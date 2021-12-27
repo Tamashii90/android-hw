@@ -1,7 +1,7 @@
 package com.example.wmshw.model;
 
 public class AddViolationRequest {
-    private String plugedNumber;
+    private String plateNumber;
     private String violationType;
     private String location;
     private boolean paid;
@@ -9,19 +9,19 @@ public class AddViolationRequest {
     public AddViolationRequest() {
     }
 
-    public AddViolationRequest(String plugedNumber, String violationType, String location) {
-        this.plugedNumber = plugedNumber;
+    public AddViolationRequest(String plateNumber, String violationType, String location) {
+        this.plateNumber = plateNumber;
         this.violationType = violationType;
         this.location = location;
         this.paid = false;
     }
 
-    public String getPlugedNumber() {
-        return plugedNumber;
+    public String getPlateNumber() {
+        return plateNumber;
     }
 
-    public void setPlugedNumber(String plugedNumber) {
-        this.plugedNumber = plugedNumber;
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
 
     public String getViolationType() {

@@ -1,19 +1,19 @@
 package com.example.wmshw.model;
 
 public class Vehicle {
-    private String plugedNumber;
+    private String plateNumber;
     private String driver;
     private String type;
     private String productionDate;
     private String registrationDate;
     private boolean crossOut;
 
-    public String getPlugedNumber() {
-        return plugedNumber;
+    public String getPlateNumber() {
+        return plateNumber;
     }
 
-    public void setPlugedNumber(String plugedNumber) {
-        this.plugedNumber = plugedNumber;
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
 
     public String getDriver() {

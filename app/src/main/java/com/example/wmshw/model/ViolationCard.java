@@ -2,7 +2,7 @@ package com.example.wmshw.model;
 
 public class ViolationCard {
     private long id;
-    private String plugedNumber;
+    private String plateNumber;
     private String driver;
     private String type;
     private String location;
@@ -13,12 +13,12 @@ public class ViolationCard {
     public ViolationCard() {
     }
 
-    public String getPlugedNumber() {
-        return plugedNumber;
+    public String getPlateNumber() {
+        return plateNumber;
     }
 
-    public void setPlugedNumber(String plugedNumber) {
-        this.plugedNumber = plugedNumber;
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
 
     public String getDriver() {
@@ -81,7 +81,7 @@ public class ViolationCard {
     public String toString() {
         return "ViolationCard{" +
                 "id=" + id +
-                ", plugedNumber='" + plugedNumber + '\'' +
+                ", plateNumber='" + plateNumber + '\'' +
                 ", driver='" + driver + '\'' +
                 ", type='" + type + '\'' +
                 ", location='" + location + '\'' +

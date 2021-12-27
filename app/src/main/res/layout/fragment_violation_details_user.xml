@@ -17,7 +17,7 @@
             android:paddingTop="36dp">
 
         <TextView
-                android:text="Pluged Number"
+                android:text="Plate Number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView"
@@ -30,7 +30,7 @@
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView_user_pluged_number"
+                android:id="@+id/textView_user_plate_number"
                 tools:text="the value"
                 style="@style/MyLabel"
                 android:textColor="@color/text"
@@ -100,7 +100,7 @@
                 android:freezesText="true"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
-                app:layout_constraintStart_toStartOf="@+id/textView_user_pluged_number"
+                app:layout_constraintStart_toStartOf="@+id/textView_user_plate_number"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView

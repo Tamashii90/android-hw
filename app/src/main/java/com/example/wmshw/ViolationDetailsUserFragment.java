@@ -22,7 +22,7 @@ public class ViolationDetailsUserFragment extends Fragment {
     SharedPreferences sharedPreferences;
     TextView locationField;
     TextView driverField;
-    TextView plugedNumberField;
+    TextView plateNumberField;
     TextView dateField;
     TextView taxField;
     TextView typeField;
@@ -41,7 +41,7 @@ public class ViolationDetailsUserFragment extends Fragment {
 
         locationField = view.findViewById(R.id.textView_user_location);
         driverField = view.findViewById(R.id.textView_user_driver);
-        plugedNumberField = view.findViewById(R.id.textView_user_pluged_number);
+        plateNumberField = view.findViewById(R.id.textView_user_plate_number);
         dateField = view.findViewById(R.id.textView_user_date);
         taxField = view.findViewById(R.id.textView_user_tax);
         typeField = view.findViewById(R.id.textView_user_type);
@@ -66,7 +66,7 @@ public class ViolationDetailsUserFragment extends Fragment {
             public void onResponse(Call<ViolationCard> call, Response<ViolationCard> response) {
                 if (response.isSuccessful()) {
                     ViolationCard card = response.body();
-                    plugedNumberField.setText(card.getPlugedNumber());
+                    plateNumberField.setText(card.getPlateNumber());
                     driverField.setText(card.getDriver());
                     locationField.setText(card.getLocation());
                     taxField.setText("$" + String.valueOf(card.getTax()));
@@ -118,11 +118,11 @@ public class ViolationDetailsUserFragment extends Fragment {
         String location = ViolationsListData.SearchCriteria.getLocation();
         String fromDate = ViolationsListData.SearchCriteria.getFromDate();
         String toDate = ViolationsListData.SearchCriteria.getToDate();
-        String plugedNumber = sharedPreferences.getString("plugedNumber", null);
+        String plateNumber = sharedPreferences.getString("plateNumber", null);
         String token = "Bearer " + sharedPreferences.getString("token", null);
 
         Call<List<ViolationCard>> request = MyApi.instance.getUsersViolationLogs(
-                token, plugedNumber, location, fromDate, toDate
+                token, plateNumber, location, fromDate, toDate
         );
         progressOverlay.setVisibility(View.VISIBLE);
         request.enqueue(new Callback<List<ViolationCard>>() {

@@ -85,14 +85,14 @@ public class UserFragment extends Fragment {
         String fromDate = fromDateField.getText().toString();
         String toDate = toDateField.getText().toString();
         String token = "Bearer " + sharedPreferences.getString("token", null);
-        String plugedNumber = sharedPreferences.getString("plugedNumber", null);
+        String plateNumber = sharedPreferences.getString("plateNumber", null);
 
         ViolationsListData.SearchCriteria.setLocation(location);
         ViolationsListData.SearchCriteria.setFromDate(fromDate);
         ViolationsListData.SearchCriteria.setToDate(toDate);
 
         Call<List<ViolationCard>> request = MyApi.instance.getUsersViolationLogs(
-                token, plugedNumber, location, fromDate, toDate
+                token, plateNumber, location, fromDate, toDate
         );
         progressBar.setVisibility(View.VISIBLE);
         request.enqueue(new Callback<List<ViolationCard>>() {

@@ -17,8 +17,8 @@ import retrofit2.Response;
 
 public class AddViolationFragment extends Fragment {
     SharedPreferences sharedPreferences;
-    String plugedNumber;
-    TextView plugedNumberField;
+    String plateNumber;
+    TextView plateNumberField;
     Spinner violationTypeField;
     EditText locationField;
     Button submitViolationBtn;
@@ -33,15 +33,15 @@ public class AddViolationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         sharedPreferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        plugedNumber = AddViolationFragmentArgs.fromBundle(getArguments()).getPlugedNumber();
+        plateNumber = AddViolationFragmentArgs.fromBundle(getArguments()).getPlateNumber();
 
-        plugedNumberField = view.findViewById(R.id.editText_add_violation_pluged_number);
+        plateNumberField = view.findViewById(R.id.editText_add_violation_plate_number);
         violationTypeField = view.findViewById(R.id.spinner_violation_type);
         locationField = view.findViewById(R.id.editText_add_violation_location);
         progressBar = view.findViewById(R.id.progressBar_add_violation);
         submitViolationBtn = view.findViewById(R.id.button_submit_add_violation);
 
-        plugedNumberField.setText(plugedNumber);
+        plateNumberField.setText(plateNumber);
         submitViolationBtn.setOnClickListener(this::submitViolation);
 
         if (savedInstanceState == null) {
@@ -93,7 +93,7 @@ public class AddViolationFragment extends Fragment {
         }
 
         AddViolationRequest addViolationRequest = new AddViolationRequest(
-                plugedNumber, violationType, location);
+                plateNumber, violationType, location);
 
         Call<Void> request = MyApi.instance.addViolationLog(token, addViolationRequest);
         progressBar.setVisibility(View.VISIBLE);
